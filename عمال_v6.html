@@ -1,0 +1,1859 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>جامعة الموصل — قسم التصاريح الأمنية والمتابعة</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<style>
+:root {
+  --primary: #1a237e;
+  --primary-light: #283593;
+  --primary-glow: rgba(26,35,126,0.15);
+  --accent: #1565c0;
+  --gold: #f9a825;
+  --success: #2e7d32;
+  --danger: #c62828;
+  --sidebar-w: 265px;
+  --fs-base: 14px;
+  --font-main: 'Tajawal', 'Cairo', Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  font-family: var(--font-main);
+  background: #eef1f8;
+  margin: 0;
+  font-size: var(--fs-base);
+  transition: font-size 0.2s;
+}
+
+/* ── SPLASH ── */
+#splash {
+  position: fixed; top:0; left:0; width:100%; height:100%;
+  background: linear-gradient(145deg, #0d1b5e 0%, #1a237e 50%, #0d47a1 100%);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  z-index: 9999;
+}
+.splash-ring {
+  width: 150px; height: 150px; border-radius: 50%;
+  border: 3px solid rgba(255,255,255,0.15);
+  display: flex; align-items: center; justify-content: center;
+  position: relative; margin-bottom: 22px;
+  box-shadow: 0 0 40px rgba(255,255,255,0.1);
+  animation: pulse-ring 2s infinite;
+}
+@keyframes pulse-ring {
+  0%,100% { box-shadow: 0 0 30px rgba(255,255,255,0.1); }
+  50% { box-shadow: 0 0 60px rgba(255,255,255,0.25); }
+}
+.splash-ring img { width: 110px; filter: drop-shadow(0 4px 15px rgba(0,0,0,0.4)); border-radius: 50%; }
+.splash-title { color:#fff; font-weight:900; font-size:1.7rem; letter-spacing:1px; margin-bottom:5px; }
+.splash-sub { color:rgba(255,255,255,0.65); font-size:1rem; margin-bottom:20px; }
+.splash-dots span {
+  display: inline-block; width:10px; height:10px; border-radius:50%;
+  background: rgba(255,255,255,0.5); margin: 0 4px;
+  animation: dot-bounce 1.4s infinite ease-in-out;
+}
+.splash-dots span:nth-child(2) { animation-delay: 0.2s; }
+.splash-dots span:nth-child(3) { animation-delay: 0.4s; }
+@keyframes dot-bounce {
+  0%,80%,100% { transform: scale(0.7); opacity:0.4; }
+  40% { transform: scale(1.2); opacity:1; }
+}
+
+/* ── LOGIN ── */
+#login-page {
+  min-height: 100vh; display: flex; align-items: center; justify-content: center;
+  background: linear-gradient(145deg, #0d1b5e, #1a237e, #0d47a1);
+}
+.login-box {
+  background: #fff; padding: 2.5rem 2rem; border-radius: 24px;
+  box-shadow: 0 25px 60px rgba(0,0,0,0.3); width: 100%; max-width: 420px; text-align: center;
+}
+.login-logo-wrap {
+  width: 90px; height: 90px; border-radius: 50%; margin: 0 auto 18px;
+  background: linear-gradient(145deg, #e8eaf6, #c5cae9);
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 8px 20px var(--primary-glow);
+}
+.login-logo-wrap img { width: 70px; }
+
+/* ── SIDEBAR ── */
+#app { display: none; }
+.sidebar {
+  width: var(--sidebar-w); background: #fff; height: 100vh;
+  position: fixed; right: 0; top: 0;
+  border-left: 1px solid rgba(26,35,126,0.1);
+  padding: 0; overflow-y: auto; z-index: 100;
+  box-shadow: -4px 0 20px rgba(26,35,126,0.07);
+}
+.sidebar-header {
+  background: linear-gradient(145deg, #0d1b5e, #1a237e);
+  padding: 20px 15px 15px;
+  text-align: center;
+  position: relative;
+}
+.sidebar-logo-ring {
+  width: 72px; height: 72px; border-radius: 50%; margin: 0 auto 10px;
+  background: rgba(255,255,255,0.15);
+  border: 2px solid rgba(255,255,255,0.3);
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+.sidebar-logo-ring img { width: 52px; }
+.sidebar-title { color:#fff; font-weight:800; font-size:.88rem; margin-bottom:3px; }
+.sidebar-sub { font-size:.65rem; color:rgba(255,255,255,0.6); font-weight:600; }
+.nav-section { padding: 12px 12px 6px; }
+.nav-label { font-size:.62rem; color:#999; font-weight:700; letter-spacing:1px; text-transform:uppercase; padding: 0 6px; margin-bottom:4px; }
+.nav-item {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 13px; border-radius: 12px; margin-bottom: 3px;
+  text-decoration: none; color: #555; transition: all .2s;
+  font-size: .83rem; font-weight: 600; cursor: pointer;
+}
+.nav-item:hover { background: #f0f3ff; color: var(--primary); transform: translateX(-2px); }
+.nav-item.on {
+  background: linear-gradient(135deg, #1a237e, #283593);
+  color: #fff; box-shadow: 0 4px 12px var(--primary-glow);
+}
+.nav-item .nav-icon {
+  width: 34px; height: 34px; border-radius: 10px; display: flex;
+  align-items: center; justify-content: center; font-size: 1rem;
+  background: rgba(26,35,126,0.08); flex-shrink: 0; transition: all .2s;
+}
+.nav-item.on .nav-icon { background: rgba(255,255,255,0.2); }
+.nav-item:hover .nav-icon { background: rgba(26,35,126,0.12); }
+.nav-item .nav-badge {
+  margin-right: auto; background: var(--gold); color: #333;
+  font-size: .6rem; border-radius: 20px; padding: 1px 7px; font-weight:700;
+}
+.nav-item.on .nav-badge { background: rgba(255,255,255,0.3); color:#fff; }
+
+/* Font size control pill */
+.fs-control {
+  display: flex; align-items: center; gap: 6px;
+  background: #f0f3ff; border-radius: 30px; padding: 6px 10px;
+  margin: 10px 12px;
+}
+.fs-label { font-size:.7rem; color:var(--primary); font-weight:700; flex:1; }
+.fs-btn {
+  width:26px; height:26px; border-radius:50%; border:none; cursor:pointer;
+  background: var(--primary); color:#fff; font-size:.85rem; font-weight:700;
+  display:flex; align-items:center; justify-content:center; transition:.15s;
+  flex-shrink:0;
+}
+.fs-btn:hover { background: var(--accent); transform: scale(1.1); }
+.fs-val { font-size:.75rem; color:var(--primary); font-weight:700; min-width:28px; text-align:center; }
+
+/* ── CONTENT ── */
+.content { margin-right: var(--sidebar-w); padding: 22px 22px 65px; }
+.page-header {
+  background: #fff; border-radius: 16px; padding: 18px 22px;
+  box-shadow: 0 2px 12px rgba(26,35,126,0.07); margin-bottom: 22px;
+  display: flex; justify-content: space-between; align-items: center;
+}
+.page-header h4 { margin:0; font-weight:800; color:#1a237e; font-size:1.15rem; }
+
+/* ── CARDS ── */
+.card2 {
+  background: #fff; border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(26,35,126,0.07); border: none;
+}
+.stat-card {
+  background: #fff; border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(26,35,126,0.07);
+  padding: 18px 20px; position: relative; overflow: hidden;
+  transition: transform .2s, box-shadow .2s;
+}
+.stat-card:hover { transform: translateY(-3px); box-shadow: 0 8px 25px rgba(26,35,126,0.12); }
+.stat-card::before {
+  content:''; position:absolute; top:0; right:0; bottom:0; width:5px; border-radius:0 16px 16px 0;
+}
+.stat-card.pending::before { background: var(--primary); }
+.stat-card.approved::before { background: var(--success); }
+.stat-card.rejected::before { background: var(--danger); }
+.stat-icon {
+  width: 48px; height: 48px; border-radius: 14px;
+  display: flex; align-items: center; justify-content: center; font-size: 1.3rem; margin-bottom: 10px;
+}
+.stat-card.pending .stat-icon { background: #e8eaf6; color: var(--primary); }
+.stat-card.approved .stat-icon { background: #e8f5e9; color: var(--success); }
+.stat-card.rejected .stat-icon { background: #ffebee; color: var(--danger); }
+.stat-val { font-size: 2rem; font-weight: 900; line-height: 1; }
+.stat-card.pending .stat-val { color: var(--primary); }
+.stat-card.approved .stat-val { color: var(--success); }
+.stat-card.rejected .stat-val { color: var(--danger); }
+.stat-lbl { font-size: .8rem; color: #888; font-weight: 600; margin-top: 3px; }
+
+/* Table */
+.tbl-header { padding: 16px 20px; border-bottom: 1px solid #f0f3ff; display:flex; justify-content:space-between; align-items:center; }
+.search-wrap { position: relative; }
+.search-wrap input { padding-right: 36px; border-radius: 30px; border: 1.5px solid #e0e3f0; font-size:.82rem; }
+.search-wrap .search-icon { position:absolute; right:12px; top:50%; transform:translateY(-50%); color:#aaa; font-size:.85rem; }
+
+/* Badges */
+.status-badge {
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 4px 12px; border-radius: 20px; font-size:.75rem; font-weight:700;
+}
+.status-badge.pending { background:#e8eaf6; color:#1a237e; }
+.status-badge.approved { background:#e8f5e9; color:#2e7d32; }
+.status-badge.rejected { background:#ffebee; color:#c62828; }
+
+/* Action buttons */
+.act-btn {
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 5px 11px; border-radius: 8px; font-size:.75rem; font-weight:700;
+  border: 1.5px solid; cursor: pointer; transition: all .15s; text-decoration:none;
+  white-space: nowrap;
+}
+.act-btn:hover { transform: translateY(-1px); }
+.act-btn.primary { border-color:var(--primary); color:var(--primary); background:rgba(26,35,126,0.05); }
+.act-btn.primary:hover { background:var(--primary); color:#fff; }
+.act-btn.success { border-color:var(--success); color:var(--success); background:rgba(46,125,50,0.05); }
+.act-btn.success:hover { background:var(--success); color:#fff; }
+.act-btn.danger { border-color:var(--danger); color:var(--danger); background:rgba(198,40,40,0.05); }
+.act-btn.danger:hover { background:var(--danger); color:#fff; }
+.act-btn.info { border-color:#0277bd; color:#0277bd; background:rgba(2,119,189,0.05); }
+.act-btn.info:hover { background:#0277bd; color:#fff; }
+
+/* Worker card in table */
+.wrk-chip {
+  background: #f8f9ff; border: 1px solid #e0e3f0; border-radius: 10px;
+  padding: 7px 10px; margin-bottom: 5px; font-size:.78rem;
+}
+.wrk-chip b { color: var(--primary); }
+
+/* ── BACKUP PAGE ── */
+.email-chip {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: linear-gradient(135deg, #e8eaf6, #e3f2fd);
+  border: 1.5px solid #c5cae9; border-radius: 20px;
+  padding: 5px 12px; font-size:.8rem; margin: 3px 4px 3px 0; font-weight:600; color:var(--primary);
+}
+.email-chip .rm-btn {
+  width:18px; height:18px; border-radius:50%; background:rgba(198,40,40,0.15);
+  color:#c62828; border:none; cursor:pointer; font-size:.65rem; display:flex;
+  align-items:center; justify-content:center; transition:.15s;
+}
+.email-chip .rm-btn:hover { background:#c62828; color:#fff; }
+
+.backup-schedule-card {
+  background: linear-gradient(135deg, #e8eaf6 0%, #e3f2fd 100%);
+  border: 2px solid #c5cae9; border-radius: 16px; padding: 20px;
+}
+.schedule-status {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: #fff; border-radius: 30px; padding: 6px 14px;
+  font-size:.8rem; font-weight:700; color:var(--primary);
+  box-shadow: 0 2px 8px var(--primary-glow);
+}
+.status-dot {
+  width:10px; height:10px; border-radius:50%; background:var(--success);
+  animation: blink 1.5s infinite;
+}
+@keyframes blink {
+  0%,100% { opacity:1; }
+  50% { opacity:0.3; }
+}
+
+/* Log entries */
+.log-entry {
+  display:flex; align-items:center; gap:10px; padding:9px 0;
+  border-bottom:1px solid #f0f3ff; font-size:.8rem;
+}
+.log-icon { width:28px; height:28px; border-radius:8px; background:#e8f5e9; color:var(--success); display:flex; align-items:center; justify-content:center; font-size:.8rem; flex-shrink:0; }
+
+/* ── FOOTER ── */
+.ftbar {
+  background: linear-gradient(135deg, #0d1b5e, #1a237e);
+  color: #fff; position: fixed; bottom: 0; right: var(--sidebar-w); left: 0;
+  padding: 8px 18px; text-align: center; font-size: .78rem; z-index: 99;
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+}
+.ftbar strong { color: var(--gold); }
+
+/* ── FORM ── */
+.fppair { background:#f8f9ff; border:1.5px solid #e0e3f0; border-radius:12px; padding:12px; margin-top:10px; }
+.fplbl { font-size:.78rem; font-weight:800; color:var(--primary); margin-bottom:6px; display:flex; align-items:center; gap:6px; }
+.fplbl2 { font-size:.72rem; color:#777; margin-bottom:4px; }
+.thumb { width:75px; height:52px; object-fit:cover; border-radius:7px; border:1.5px solid #c5cae9; cursor:pointer; transition:.15s; }
+.thumb:hover { transform:scale(1.05); box-shadow:0 4px 12px rgba(0,0,0,0.15); }
+
+/* Modals */
+.modal-header { border-bottom: none; padding-bottom: 0; }
+.modal-footer { border-top: 1px solid #f0f3ff; }
+
+/* Section headers */
+.sec-hdr {
+  display:flex; align-items:center; gap:10px; margin-bottom:14px;
+}
+.sec-hdr .sec-icon {
+  width:36px; height:36px; border-radius:10px;
+  background:linear-gradient(135deg,#e8eaf6,#c5cae9);
+  color:var(--primary); display:flex; align-items:center; justify-content:center; font-size:.95rem;
+}
+.sec-hdr h5 { margin:0; font-weight:800; color:var(--primary); font-size:.95rem; }
+
+/* ── RESPONSIVE ── */
+@media(max-width:768px) {
+  .sidebar { width:100%; height:auto; position:relative; }
+  .content { margin-right:0; padding:15px; }
+  .ftbar { right:0; }
+}
+
+/* ── BACKUP STAT CARDS ── */
+.bkp-stat-card {
+  background:#fff; border:1.5px solid #e0e3f0; border-radius:14px;
+  padding:16px 14px; text-align:center; transition:.2s;
+}
+.bkp-stat-card:hover { transform:translateY(-2px); box-shadow:0 6px 18px rgba(26,35,126,0.1); }
+.bkp-stat-icon {
+  width:44px; height:44px; border-radius:12px; margin:0 auto 10px;
+  display:flex; align-items:center; justify-content:center; font-size:1.1rem;
+}
+.bkp-stat-val { font-size:1.8rem; font-weight:900; color:#1a237e; line-height:1; }
+.bkp-stat-lbl { font-size:.73rem; color:#888; font-weight:600; margin-top:3px; }
+
+/* snapshot item */
+.snap-item {
+  display:flex; align-items:center; gap:12px; padding:12px 14px;
+  border:1.5px solid #e0e3f0; border-radius:12px; margin-bottom:8px;
+  background:#fafbff; transition:.15s;
+}
+.snap-item:hover { background:#f0f3ff; border-color:#c5cae9; }
+.snap-icon {
+  width:40px; height:40px; border-radius:11px; flex-shrink:0;
+  display:flex; align-items:center; justify-content:center; font-size:1rem;
+}
+.snap-info { flex:1; min-width:0; }
+.snap-title { font-weight:700; font-size:.85rem; color:#1a237e; }
+.snap-meta { font-size:.72rem; color:#888; margin-top:2px; }
+.snap-actions { display:flex; gap:6px; flex-shrink:0; }
+</style>
+</head>
+<body>
+
+<!-- SPLASH -->
+<div id="splash">
+  <div class="splash-ring">
+    <img src="https://upload.wikimedia.org/wikipedia/ar/b/b3/Mosul_University_logo.png">
+  </div>
+  <div class="splash-title">جامعة الموصل</div>
+  <div class="splash-sub">قسم التصاريح الأمنية والمتابعة</div>
+  <div class="splash-dots"><span></span><span></span><span></span></div>
+</div>
+
+<!-- LOGIN -->
+<div id="login-page">
+  <div class="login-box">
+    <div class="login-logo-wrap">
+      <img src="https://upload.wikimedia.org/wikipedia/ar/b/b3/Mosul_University_logo.png">
+    </div>
+    <h4 style="font-weight:900;color:var(--primary);margin-bottom:3px;">دخول النظام</h4>
+    <p class="text-muted small mb-4">قسم التصاريح الأمنية والمتابعة — جامعة الموصل</p>
+    <div class="mb-3 text-start">
+      <label class="form-label fw-bold small"><i class="fa-solid fa-user me-1" style="color:var(--primary)"></i>اسم المستخدم</label>
+      <input id="u" type="text" class="form-control rounded-pill px-3" value="admin">
+    </div>
+    <div class="mb-4 text-start">
+      <label class="form-label fw-bold small"><i class="fa-solid fa-lock me-1" style="color:var(--primary)"></i>كلمة المرور</label>
+      <input id="p" type="password" class="form-control rounded-pill px-3" value="123456">
+    </div>
+    <button onclick="doLogin()" class="btn w-100 rounded-pill py-2 fw-bold" style="background:linear-gradient(135deg,#1a237e,#1565c0);color:#fff;font-size:.95rem;box-shadow:0 6px 20px rgba(26,35,126,0.35);">
+      <i class="fa-solid fa-right-to-bracket me-2"></i>دخول اللوحة
+    </button>
+    <div id="err" class="text-danger small mt-2" style="display:none;"><i class="fa-solid fa-circle-exclamation me-1"></i>بيانات خاطئة</div>
+  </div>
+</div>
+
+<!-- MAIN APP -->
+<div id="app">
+
+  <div class="sidebar">
+    <div class="sidebar-header">
+      <div class="sidebar-logo-ring">
+        <img src="https://upload.wikimedia.org/wikipedia/ar/b/b3/Mosul_University_logo.png">
+      </div>
+      <div class="sidebar-title">جامعة الموصل</div>
+      <div class="sidebar-sub">قسم التصاريح الأمنية والمتابعة</div>
+    </div>
+
+    <!-- Font size control -->
+    <div class="fs-control">
+      <span class="fs-label"><i class="fa-solid fa-text-height me-1"></i>حجم الخط</span>
+      <button class="fs-btn" onclick="changeFontSize(-1)" title="تصغير"><i class="fa-solid fa-minus"></i></button>
+      <span class="fs-val" id="fsVal">14</span>
+      <button class="fs-btn" onclick="changeFontSize(1)" title="تكبير"><i class="fa-solid fa-plus"></i></button>
+    </div>
+
+    <div class="nav-section">
+      <div class="nav-label">القائمة الرئيسية</div>
+      <a class="nav-item on" onclick="go('dash',this)">
+        <div class="nav-icon"><i class="fa-solid fa-chart-pie"></i></div>
+        <span>لوحة التحكم</span>
+        <span class="nav-badge" id="navBadge">0</span>
+      </a>
+      <a class="nav-item" onclick="go('newreq',this)">
+        <div class="nav-icon"><i class="fa-solid fa-file-circle-plus"></i></div>
+        <span>طلب جديد</span>
+      </a>
+      <a class="nav-item" onclick="go('users',this)">
+        <div class="nav-icon"><i class="fa-solid fa-users-gear"></i></div>
+        <span>المستخدمون</span>
+      </a>
+      <a class="nav-item" onclick="go('ents',this)">
+        <div class="nav-icon"><i class="fa-solid fa-building-columns"></i></div>
+        <span>الجهات</span>
+      </a>
+      <a class="nav-item" onclick="go('reps',this)">
+        <div class="nav-icon"><i class="fa-solid fa-file-chart-column"></i></div>
+        <span>التقارير</span>
+      </a>
+      <a class="nav-item" onclick="go('bkp',this)">
+        <div class="nav-icon"><i class="fa-solid fa-database"></i></div>
+        <span>النسخ الاحتياطي</span>
+      </a>
+    </div>
+    <div class="nav-section" style="border-top:1px solid #f0f3ff;margin-top:4px;">
+      <a class="nav-item" onclick="location.reload()" style="color:#c62828;">
+        <div class="nav-icon" style="background:#fff0f0;"><i class="fa-solid fa-right-from-bracket" style="color:#c62828;"></i></div>
+        <span>خروج</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="content">
+
+    <!-- DASHBOARD -->
+    <div id="pg-dash">
+      <div class="page-header">
+        <div>
+          <h4><i class="fa-solid fa-chart-pie me-2"></i>نظرة عامة على التصاريح</h4>
+          <small class="text-muted">جامعة الموصل — قسم التصاريح الأمنية والمتابعة</small>
+        </div>
+        <span id="todayDate" class="badge rounded-pill px-3 py-2" style="background:linear-gradient(135deg,#1a237e,#1565c0);font-size:.8rem;font-weight:600;"></span>
+      </div>
+
+      <div class="row g-3 mb-4">
+        <div class="col-md-4">
+          <div class="stat-card pending">
+            <div class="stat-icon"><i class="fa-solid fa-hourglass-half"></i></div>
+            <div class="stat-val" id="cPend">0</div>
+            <div class="stat-lbl">قيد المراجعة</div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="stat-card approved">
+            <div class="stat-icon"><i class="fa-solid fa-circle-check"></i></div>
+            <div class="stat-val" id="cApp">0</div>
+            <div class="stat-lbl">مقبولة</div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="stat-card rejected">
+            <div class="stat-icon"><i class="fa-solid fa-circle-xmark"></i></div>
+            <div class="stat-val" id="cRej">0</div>
+            <div class="stat-lbl">مرفوضة</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card2">
+        <div class="tbl-header">
+          <h5 class="mb-0 fw-bold" style="color:#1a237e;"><i class="fa-solid fa-inbox me-2"></i>الطلبات الواردة</h5>
+          <div class="search-wrap">
+            <i class="fa-solid fa-magnifying-glass search-icon"></i>
+            <input type="text" class="form-control" style="padding-right:36px;width:210px;" placeholder="بحث..." oninput="filterTbl(this.value)">
+          </div>
+        </div>
+        <div class="table-responsive">
+          <table class="table table-hover align-middle mb-0" style="font-size:.83rem;">
+            <thead style="background:#f8f9ff;">
+              <tr>
+                <th class="ps-3" style="color:#888;font-weight:700;font-size:.75rem;">الجهة</th>
+                <th style="color:#888;font-weight:700;font-size:.75rem;">العجلة</th>
+                <th style="color:#888;font-weight:700;font-size:.75rem;">العمال</th>
+                <th class="text-center" style="color:#888;font-weight:700;font-size:.75rem;">QR</th>
+                <th style="color:#888;font-weight:700;font-size:.75rem;">الحالة</th>
+                <th class="text-center" style="color:#888;font-weight:700;font-size:.75rem;">إجراءات</th>
+              </tr>
+            </thead>
+            <tbody id="tblBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <!-- NEW REQUEST -->
+    <div id="pg-newreq" style="display:none;">
+      <div class="page-header">
+        <h4><i class="fa-solid fa-file-circle-plus me-2"></i>إدخال طلب تصريح جديد</h4>
+      </div>
+      <div class="card2 p-4">
+        <div class="sec-hdr">
+          <div class="sec-icon"><i class="fa-solid fa-building-user"></i></div>
+          <h5>البيانات الأساسية</h5>
+        </div>
+        <div class="row mb-3">
+          <div class="col-md-6 mb-3">
+            <label class="form-label fw-bold small"><i class="fa-solid fa-building-columns me-1 text-primary"></i>الجهة الطالبة</label>
+            <select id="rCollege" class="form-select" required><option value="">-- اختر الجهة --</option></select>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label class="form-label fw-bold small"><i class="fa-solid fa-helmet-safety me-1 text-primary"></i>الجهة المنفذة / المقاول</label>
+            <input id="rContractor" type="text" class="form-control" placeholder="مثال: شركة الفاو" required>
+          </div>
+          <div class="col-12 mb-2">
+            <label class="form-label fw-bold small"><i class="fa-solid fa-screwdriver-wrench me-1 text-primary"></i>تفاصيل العمل</label>
+            <input id="rDetail" type="text" class="form-control" placeholder="مثال: صيانة التبريد المركزية" required>
+          </div>
+        </div>
+
+        <div class="d-flex justify-content-between align-items-center mb-3 mt-4">
+          <div class="sec-hdr mb-0">
+            <div class="sec-icon"><i class="fa-solid fa-car-side"></i></div>
+            <h5>بيانات العجلات والمستمسكات</h5>
+          </div>
+          <button type="button" class="act-btn primary" onclick="addVeh()"><i class="fa-solid fa-plus"></i> إضافة عجلة</button>
+        </div>
+        <div id="vehList" class="mb-4"></div>
+
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <div class="sec-hdr mb-0">
+            <div class="sec-icon"><i class="fa-solid fa-person-digging"></i></div>
+            <h5>قائمة العمال المصرح لهم</h5>
+          </div>
+          <button type="button" class="act-btn primary" onclick="addWrk()"><i class="fa-solid fa-plus"></i> إضافة عامل</button>
+        </div>
+        <div id="wrkList" class="mb-3"></div>
+
+        <hr class="my-3">
+        <div class="form-check p-3 rounded" style="background:#fff8e1;border:1.5px solid #f9a825;">
+          <input class="form-check-input" type="checkbox" id="pledge" style="float:right;margin-left:10px;width:1.2em;height:1.2em;">
+          <label class="form-check-label fw-bold" for="pledge" style="color:#e65100;">
+            <i class="fa-solid fa-shield-check me-1"></i>
+            أتعهد بالالتزام بكافة إجراءات السلامة المهنية وفق قانون العمل العراقي النافذ.
+          </label>
+        </div>
+        <div class="text-end mt-3">
+          <button onclick="submitReq()" class="btn rounded-pill px-5 fw-bold" style="background:linear-gradient(135deg,#1a237e,#1565c0);color:#fff;box-shadow:0 5px 15px rgba(26,35,126,0.3);">
+            <i class="fa-solid fa-paper-plane me-2"></i>إرسال الطلب للمراجعة
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- USERS -->
+    <div id="pg-users" style="display:none;">
+      <div class="page-header">
+        <h4><i class="fa-solid fa-users-gear me-2"></i>إدارة المستخدمين</h4>
+        <button class="act-btn primary" onclick="openUserModal()"><i class="fa-solid fa-plus"></i> إضافة مستخدم</button>
+      </div>
+      <div class="card2 table-responsive">
+        <table class="table table-hover align-middle mb-0">
+          <thead style="background:#f8f9ff;">
+            <tr>
+              <th class="ps-3" style="color:#888;font-size:.75rem;">المستخدم</th>
+              <th style="color:#888;font-size:.75rem;">البريد</th>
+              <th style="color:#888;font-size:.75rem;">الصلاحية</th>
+              <th style="color:#888;font-size:.75rem;">الجهة</th>
+              <th class="text-center" style="color:#888;font-size:.75rem;">عمليات</th>
+            </tr>
+          </thead>
+          <tbody id="userBody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- ENTITIES -->
+    <div id="pg-ents" style="display:none;">
+      <div class="page-header">
+        <h4><i class="fa-solid fa-building-columns me-2"></i>إدارة الجهات</h4>
+        <button class="act-btn primary" onclick="openEntModal()"><i class="fa-solid fa-plus"></i> إضافة جهة</button>
+      </div>
+      <div class="card2 table-responsive">
+        <table class="table table-hover align-middle mb-0">
+          <thead style="background:#f8f9ff;">
+            <tr>
+              <th class="ps-3" style="color:#888;font-size:.75rem;">#</th>
+              <th style="color:#888;font-size:.75rem;">اسم الجهة</th>
+              <th style="color:#888;font-size:.75rem;">التصنيف</th>
+              <th class="text-center" style="color:#888;font-size:.75rem;">عمليات</th>
+            </tr>
+          </thead>
+          <tbody id="entBody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- REPORTS -->
+    <div id="pg-reps" style="display:none;">
+      <div class="page-header">
+        <h4><i class="fa-solid fa-file-chart-column me-2"></i>تقرير العمال ومدة العمل</h4>
+        <button class="act-btn primary" onclick="renderRep()"><i class="fa-solid fa-rotate-right"></i> تحديث</button>
+      </div>
+      <div id="repContent"></div>
+    </div>
+
+    <!-- BACKUP -->
+    <div id="pg-bkp" style="display:none;">
+      <div class="page-header">
+        <h4><i class="fa-solid fa-database me-2"></i>النسخ الاحتياطي والاسترجاع</h4>
+        <div style="display:flex;gap:8px;align-items:center;">
+          <span id="lastSaveLabel" class="badge rounded-pill px-3 py-2" style="background:#e8f5e9;color:#2e7d32;font-size:.75rem;display:none;"></span>
+          <button class="act-btn success" onclick="saveNow()" style="padding:8px 18px;font-size:.85rem;">
+            <i class="fa-solid fa-floppy-disk"></i> حفظ الآن
+          </button>
+        </div>
+      </div>
+
+      <!-- Quick save bar -->
+      <div class="card2 p-4 mb-3">
+        <div class="sec-hdr">
+          <div class="sec-icon"><i class="fa-solid fa-hard-drive"></i></div>
+          <h5>الحفظ التلقائي في المتصفح</h5>
+        </div>
+        <p class="text-muted small mb-3">
+          <i class="fa-solid fa-circle-info me-1 text-primary"></i>
+          يحفظ النظام بياناتك تلقائياً في المتصفح. البيانات تبقى حتى بعد إغلاق الصفحة وإعادة فتحها على نفس الجهاز.
+        </p>
+        <div class="row g-3">
+          <div class="col-md-3">
+            <div class="bkp-stat-card" id="bsReqs">
+              <div class="bkp-stat-icon" style="background:#e8eaf6;color:#1a237e;"><i class="fa-solid fa-file-lines"></i></div>
+              <div class="bkp-stat-val" id="bsReqsVal">0</div>
+              <div class="bkp-stat-lbl">طلبات محفوظة</div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="bkp-stat-card">
+              <div class="bkp-stat-icon" style="background:#e8f5e9;color:#2e7d32;"><i class="fa-solid fa-users"></i></div>
+              <div class="bkp-stat-val" id="bsUsersVal">0</div>
+              <div class="bkp-stat-lbl">مستخدمون</div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="bkp-stat-card">
+              <div class="bkp-stat-icon" style="background:#fff3e0;color:#e65100;"><i class="fa-solid fa-building-columns"></i></div>
+              <div class="bkp-stat-val" id="bsEntsVal">0</div>
+              <div class="bkp-stat-lbl">جهات</div>
+            </div>
+          </div>
+          <div class="col-md-3">
+            <div class="bkp-stat-card">
+              <div class="bkp-stat-icon" style="background:#fce4ec;color:#c62828;"><i class="fa-solid fa-clock-rotate-left"></i></div>
+              <div class="bkp-stat-val" id="bsSnapsVal">0</div>
+              <div class="bkp-stat-lbl">نقاط استرجاع</div>
+            </div>
+          </div>
+        </div>
+        <div class="d-flex gap-2 flex-wrap mt-3">
+          <button class="act-btn success" onclick="saveNow()" style="padding:9px 22px;">
+            <i class="fa-solid fa-floppy-disk"></i> حفظ الآن في المتصفح
+          </button>
+          <button class="act-btn primary" onclick="createSnapshot()" style="padding:9px 22px;">
+            <i class="fa-solid fa-camera"></i> إنشاء نقطة استرجاع
+          </button>
+        </div>
+      </div>
+
+      <!-- Snapshots -->
+      <div class="card2 p-4 mb-3">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <div class="sec-hdr mb-0">
+            <div class="sec-icon"><i class="fa-solid fa-timeline"></i></div>
+            <h5>نقاط الاسترجاع المحفوظة</h5>
+          </div>
+          <button class="act-btn danger" onclick="clearAllSnapshots()" style="font-size:.75rem;padding:5px 12px;">
+            <i class="fa-solid fa-trash-can"></i> مسح الكل
+          </button>
+        </div>
+        <div id="snapshotList">
+          <p class="text-muted small text-center py-3"><i class="fa-regular fa-clock fa-lg d-block mb-2"></i>لا توجد نقاط استرجاع بعد.</p>
+        </div>
+      </div>
+
+      <!-- Export / Import JSON -->
+      <div class="card2 p-4 mb-3">
+        <div class="sec-hdr">
+          <div class="sec-icon"><i class="fa-solid fa-file-export"></i></div>
+          <h5>تصدير واستيراد ملف النسخة الاحتياطية</h5>
+        </div>
+        <p class="text-muted small mb-3">
+          <i class="fa-solid fa-shield-halved me-1 text-success"></i>
+          احفظ ملف JSON كامل على جهازك واسترجعه في أي وقت أو على أي جهاز آخر.
+        </p>
+        <div class="d-flex gap-2 flex-wrap mb-3">
+          <button class="act-btn primary" onclick="exportJSON()" style="padding:9px 22px;">
+            <i class="fa-solid fa-file-arrow-down"></i> تصدير ملف JSON
+          </button>
+          <button class="act-btn success" onclick="exportTXT()" style="padding:9px 22px;">
+            <i class="fa-solid fa-file-lines"></i> تصدير ملف نصي
+          </button>
+          <label class="act-btn info" style="padding:9px 22px;cursor:pointer;margin:0;">
+            <i class="fa-solid fa-file-arrow-up"></i> استيراد ملف JSON
+            <input type="file" id="importFile" accept=".json" style="display:none;" onchange="importJSON(this)">
+          </label>
+        </div>
+        <div id="importStatus" style="display:none;"></div>
+      </div>
+
+      <!-- Email schedule -->
+      <div class="backup-schedule-card mb-3">
+        <div class="d-flex justify-content-between align-items-start flex-wrap gap-3">
+          <div>
+            <div class="sec-hdr mb-2">
+              <div class="sec-icon" style="background:rgba(255,255,255,0.6);"><i class="fa-solid fa-envelope-circle-check"></i></div>
+              <h5>إرسال تلقائي يومي بالإيميل</h5>
+            </div>
+            <div class="schedule-status">
+              <div class="status-dot"></div>
+              <span id="scheduleStatus">النسخ التلقائي مفعّل</span>
+            </div>
+          </div>
+          <div>
+            <label class="form-label fw-bold small d-block"><i class="fa-solid fa-clock me-1 text-primary"></i>وقت الإرسال اليومي</label>
+            <input id="bkpTime" type="time" class="form-control fw-bold" value="23:00" style="width:160px;" onchange="updateScheduleLabel()">
+          </div>
+        </div>
+        <hr style="border-color:rgba(26,35,126,0.15);margin:15px 0;">
+        <div class="sec-hdr mb-2">
+          <div class="sec-icon" style="background:rgba(255,255,255,0.6);"><i class="fa-solid fa-envelope-open-text"></i></div>
+          <h5>الإيميلات المستلمة</h5>
+        </div>
+        <div id="emailList" class="mb-3 p-3 rounded" style="background:rgba(255,255,255,0.5);border:1.5px solid rgba(26,35,126,0.15);min-height:44px;"></div>
+        <div class="input-group mb-3" style="max-width:400px;">
+          <input id="newEmail" type="email" class="form-control" placeholder="أضف إيميل..." style="border-radius:30px 0 0 30px !important;">
+          <button class="btn fw-bold" onclick="addEmail()" style="background:var(--primary);color:#fff;border-radius:0 30px 30px 0;padding:0 18px;">
+            <i class="fa-solid fa-plus"></i>
+          </button>
+        </div>
+        <div class="d-flex gap-2 flex-wrap">
+          <button class="act-btn success" onclick="sendBkp()" style="padding:8px 20px;">
+            <i class="fa-solid fa-paper-plane"></i> إرسال الآن بالإيميل
+          </button>
+        </div>
+      </div>
+
+      <!-- Log -->
+      <div class="card2 p-4">
+        <div class="sec-hdr">
+          <div class="sec-icon"><i class="fa-solid fa-scroll"></i></div>
+          <h5>سجل العمليات</h5>
+        </div>
+        <div id="bkpLog"><p class="text-muted small text-center py-2"><i class="fa-regular fa-clock me-1"></i>لا يوجد سجل بعد.</p></div>
+      </div>
+    </div>
+
+  </div><!-- end content -->
+
+  <div class="ftbar">
+    <i class="fa-solid fa-landmark" style="color:var(--gold);"></i>
+    من تصميم &nbsp;<strong>أ.م.د. هشام محمد خضر</strong>&nbsp; — مدير قسم التصاريح الأمنية والمتابعة &nbsp;|&nbsp; جامعة الموصل
+  </div>
+
+</div><!-- end app -->
+
+<!-- ATTACH MODAL -->
+<div class="modal fade" id="mdlAttach" tabindex="-1">
+  <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content" style="border-radius:18px;overflow:hidden;">
+      <div class="modal-header text-white" style="background:linear-gradient(135deg,#0d1b5e,#1a237e);padding:16px 20px;">
+        <h5 class="modal-title"><i class="fa-solid fa-magnifying-glass-plus me-2"></i>تدقيق المرفقات</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body" id="attachBody"></div>
+      <div class="modal-footer"><button class="btn rounded-pill px-4" data-bs-dismiss="modal" style="background:#f0f3ff;color:var(--primary);font-weight:600;">إغلاق</button></div>
+    </div>
+  </div>
+</div>
+
+<!-- USER MODAL -->
+<div class="modal fade" id="mdlUser" tabindex="-1">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content" style="border-radius:18px;overflow:hidden;">
+      <div class="modal-header text-white" style="background:linear-gradient(135deg,#1a237e,#1565c0);">
+        <h5 class="modal-title" id="userModalTitle"><i class="fa-solid fa-user-plus me-2"></i>إضافة مستخدم</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body p-4">
+        <input type="hidden" id="userId">
+        <div class="row">
+          <div class="col-md-6 mb-3"><label class="form-label fw-bold small">الاسم الكامل</label><input id="userName" type="text" class="form-control" placeholder="الاسم الكامل"></div>
+          <div class="col-md-6 mb-3"><label class="form-label fw-bold small">اسم المستخدم</label><input id="userHandle" type="text" class="form-control" placeholder="@username"></div>
+          <div class="col-md-6 mb-3"><label class="form-label fw-bold small">البريد الإلكتروني</label><input id="userEmail" type="email" class="form-control" placeholder="email@uomosul.edu.iq"></div>
+          <div class="col-md-6 mb-3"><label class="form-label fw-bold small">الجهة</label><input id="userDept" type="text" class="form-control" placeholder="مثال: قسم الأمن"></div>
+          <div class="col-md-6 mb-3"><label class="form-label fw-bold small">الصلاحية</label>
+            <select id="userRole" class="form-select">
+              <option value="أدمن">أدمن</option>
+              <option value="مسؤول كلية">مسؤول كلية</option>
+              <option value="أدمن أمني">أدمن أمني</option>
+              <option value="مدير النظام">مدير النظام</option>
+            </select>
+          </div>
+          <div class="col-md-6 mb-3"><label class="form-label fw-bold small">كلمة المرور</label><input id="userPass" type="password" class="form-control" placeholder="••••••••"></div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn rounded-pill px-4" data-bs-dismiss="modal" style="background:#f0f3ff;color:#666;">إلغاء</button>
+        <button class="btn rounded-pill px-4 fw-bold" onclick="saveUser()" style="background:var(--primary);color:#fff;">
+          <i class="fa-solid fa-floppy-disk me-1"></i>حفظ
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- REQUEST EDIT MODAL -->
+<div class="modal fade" id="mdlReqEdit" tabindex="-1">
+  <div class="modal-dialog modal-lg modal-dialog-centered">
+    <div class="modal-content" style="border-radius:18px;overflow:hidden;">
+      <div class="modal-header text-white" style="background:linear-gradient(135deg,#1a237e,#1565c0);">
+        <h5 class="modal-title"><i class="fa-solid fa-pen-to-square me-2"></i>تعديل الطلب</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body p-4">
+        <input type="hidden" id="editReqId">
+        <div class="row mb-3">
+          <div class="col-md-6 mb-3">
+            <label class="form-label fw-bold small"><i class="fa-solid fa-building-columns me-1 text-primary"></i>الجهة الطالبة</label>
+            <select id="editCollege" class="form-select"></select>
+          </div>
+          <div class="col-md-6 mb-3">
+            <label class="form-label fw-bold small"><i class="fa-solid fa-helmet-safety me-1 text-primary"></i>الجهة المنفذة / المقاول</label>
+            <input id="editContractor" type="text" class="form-control">
+          </div>
+          <div class="col-md-8 mb-3">
+            <label class="form-label fw-bold small"><i class="fa-solid fa-screwdriver-wrench me-1 text-primary"></i>تفاصيل العمل</label>
+            <input id="editDetail" type="text" class="form-control">
+          </div>
+          <div class="col-md-4 mb-3">
+            <label class="form-label fw-bold small"><i class="fa-solid fa-car-side me-1 text-primary"></i>العجلة</label>
+            <input id="editVehicle" type="text" class="form-control">
+          </div>
+          <div class="col-md-4">
+            <label class="form-label fw-bold small"><i class="fa-solid fa-circle-half-stroke me-1 text-primary"></i>الحالة</label>
+            <select id="editStatus" class="form-select">
+              <option value="pending">قيد المراجعة</option>
+              <option value="approved">مقبول</option>
+              <option value="rejected">مرفوض</option>
+            </select>
+          </div>
+        </div>
+        <div id="editWorkersSection">
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <label class="form-label fw-bold small mb-0"><i class="fa-solid fa-person-digging me-1 text-primary"></i>العمال</label>
+            <button type="button" class="act-btn primary" style="font-size:.75rem;padding:4px 10px;" onclick="addEditWorker()"><i class="fa-solid fa-plus"></i> إضافة عامل</button>
+          </div>
+          <div id="editWorkersList"></div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn rounded-pill px-4" data-bs-dismiss="modal" style="background:#f0f3ff;color:#666;">إلغاء</button>
+        <button class="btn rounded-pill px-4 fw-bold" onclick="saveReqEdit()" style="background:var(--primary);color:#fff;">
+          <i class="fa-solid fa-floppy-disk me-1"></i>حفظ التعديلات
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ENTITY MODAL -->
+<div class="modal fade" id="mdlEnt" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content" style="border-radius:18px;overflow:hidden;">
+      <div class="modal-header text-white" style="background:linear-gradient(135deg,#1a237e,#1565c0);">
+        <h5 class="modal-title" id="entModalTitle"><i class="fa-solid fa-building-circle-arrow-right me-2"></i>إضافة جهة</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+      </div>
+      <div class="modal-body p-4">
+        <input type="hidden" id="entId">
+        <div class="mb-3"><label class="form-label fw-bold small">اسم الجهة</label><input id="entName" type="text" class="form-control" required></div>
+        <div class="mb-3"><label class="form-label fw-bold small">التصنيف</label>
+          <select id="entType" class="form-select">
+            <option value="كلية">كلية</option><option value="مركز">مركز</option>
+            <option value="قسم رئاسة">قسم في الرئاسة</option><option value="شعبة/وحدة">شعبة/وحدة</option>
+          </select>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn rounded-pill px-4" data-bs-dismiss="modal" style="background:#f0f3ff;color:#666;">إلغاء</button>
+        <button class="btn rounded-pill px-4 fw-bold" onclick="saveEnt()" style="background:var(--primary);color:#fff;">
+          <i class="fa-solid fa-floppy-disk me-1"></i>حفظ
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+// ── DATA ────────────────────────────────────────────────────
+var entities = [
+  {id:1,name:"كلية الطب",type:"كلية"},{id:2,name:"كلية طب الأسنان",type:"كلية"},
+  {id:3,name:"كلية الصيدلة",type:"كلية"},{id:4,name:"كلية الهندسة",type:"كلية"},
+  {id:5,name:"كلية العلوم",type:"كلية"},{id:6,name:"كلية الآداب",type:"كلية"},
+  {id:7,name:"مركز الحاسبة الإلكترونية",type:"مركز"},{id:8,name:"مركز التحسس النائي",type:"مركز"},
+  {id:9,name:"قسم المتابعة والتنسيق",type:"قسم رئاسة"},
+  {id:10,name:"قسم الشؤون الإدارية والمالية",type:"قسم رئاسة"},
+  {id:11,name:"شعبة التصاريح الأمنية",type:"شعبة/وحدة"}
+];
+var reqs = [
+  {id:1,college:"كلية الهندسة",contractor:"شركة الفاو",vehicle:"11223 ب / نينوى",
+   detail:"صيانة كهربائية",status:"pending",vFiles:[],
+   workers:[{name:"علي حسن محمود جاسم",dur:"30 يوم",sd:"2026-04-15",files:{}},
+            {name:"محمد عمر خالد سعيد",dur:"30 يوم",sd:"2026-04-15",files:{}},
+            {name:"كرار فاضل إبراهيم علي",dur:"15 يوم",sd:"2026-04-20",files:{}}]},
+  {id:2,college:"كلية العلوم",contractor:"مكتب النور",vehicle:"بدون عجلة",
+   detail:"نقل أثاث مختبري",status:"pending",vFiles:[],
+   workers:[{name:"أحمد طارق يوسف حمد",dur:"7 أيام",sd:"2026-04-14",files:{}},
+            {name:"زياد نوري سالم عبد",dur:"7 أيام",sd:"2026-04-14",files:{}}]},
+  {id:3,college:"كلية الطب",contractor:"شركة الحياة",vehicle:"99887 أ / نينوى",
+   detail:"تجهيز أجهزة",status:"pending",vFiles:[],
+   workers:[{name:"حيدر مهدي عبدالله كريم",dur:"45 يوم",sd:"2026-04-13",files:{}}]}
+];
+var bEmails = ["security@uomosul.edu.iq","admin@uomosul.edu.iq"];
+var bLog = [];
+var vCnt=0, wCnt=0;
+var tmpFiles = {};
+var currentFontSize = 14;
+
+var users = [
+  {id:1, name:"أحمد محمود", handle:"ahmed", email:"ahmed@uomosul.edu.iq", dept:"قسم الأمن", role:"أدمن"},
+  {id:2, name:"سارة علي", handle:"sara", email:"sara@uomosul.edu.iq", dept:"كلية الهندسة", role:"مسؤول كلية"}
+];
+var userModalBs = null;
+var reqEditModalBs = null;
+
+// ── FONT SIZE CONTROL ─────────────────────────────────────────
+function changeFontSize(delta) {
+  currentFontSize = Math.min(22, Math.max(11, currentFontSize + delta));
+  document.documentElement.style.setProperty('--fs-base', currentFontSize + 'px');
+  document.body.style.fontSize = currentFontSize + 'px';
+  document.getElementById('fsVal').textContent = currentFontSize;
+}
+
+// ── INIT ────────────────────────────────────────────────────
+window.onload = function() {
+  loadFromStorage();
+  setTimeout(function(){
+    var s = document.getElementById('splash');
+    if(s){ s.style.opacity='0'; s.style.transition='opacity .7s'; setTimeout(function(){ s.style.display='none'; },700); }
+  }, 2200);
+  document.getElementById('todayDate').textContent = new Date().toLocaleDateString('ar-IQ',{weekday:'long',year:'numeric',month:'long',day:'numeric'});
+  setInterval(autoBackup, 60000);
+  setInterval(saveNow, 120000); // auto-save every 2 minutes
+  updateScheduleLabel();
+};
+
+// ── LOGIN ────────────────────────────────────────────────────
+function doLogin() {
+  var u = document.getElementById('u').value.trim();
+  var p = document.getElementById('p').value.trim();
+  if(u === 'admin' && p === '123456') {
+    document.getElementById('login-page').style.display = 'none';
+    document.getElementById('app').style.display = 'block';
+    buildCollegeSelect(); renderTbl(); renderEnts(); renderEmailList(); renderUsers();
+    if(!document.getElementById('vehList').children.length) addVeh();
+    if(!document.getElementById('wrkList').children.length) addWrk();
+  } else {
+    document.getElementById('err').style.display = 'block';
+  }
+}
+document.addEventListener('keydown', function(e){
+  if(e.key==='Enter' && document.getElementById('login-page').style.display !== 'none') doLogin();
+});
+
+// ── NAVIGATION ───────────────────────────────────────────────
+var pages = ['dash','newreq','users','ents','reps','bkp'];
+function go(pg, el) {
+  pages.forEach(function(p){ document.getElementById('pg-'+p).style.display = p===pg ? 'block' : 'none'; });
+  document.querySelectorAll('.nav-item').forEach(function(n){ n.classList.remove('on'); });
+  if(el) el.classList.add('on');
+  if(pg==='reps') renderRep();
+  if(pg==='bkp') { renderEmailList(); updateScheduleLabel(); renderSnapshots(); updateBkpStats(); }
+  if(pg==='users') renderUsers();
+}
+
+// ── VEHICLE FIELD ────────────────────────────────────────────
+function addVeh() {
+  vCnt++;
+  var uid = 'v'+Date.now();
+  var d = document.createElement('div');
+  d.className = 'bg-white border rounded-3 p-3 mb-3 shadow-sm';
+  d.setAttribute('data-uid', uid);
+  d.innerHTML =
+    '<div class="d-flex justify-content-between align-items-center mb-3">'
+    +'<div style="display:flex;align-items:center;gap:8px;">'
+    +'<div style="width:30px;height:30px;border-radius:8px;background:#e8eaf6;color:var(--primary);display:flex;align-items:center;justify-content:center;"><i class="fa-solid fa-car-side"></i></div>'
+    +'<b class="text-primary">عجلة '+vCnt+'</b></div>'
+    +'<button type="button" class="act-btn danger py-1 px-2" onclick="this.closest(\'[data-uid]\').remove()"><i class="fa-solid fa-trash-can"></i> حذف</button>'
+    +'</div>'
+    +'<div class="row g-2 mb-2">'
+    +'<div class="col-md-5"><label class="form-label small fw-bold">رقم العجلة والمحافظة</label>'
+    +'<input type="text" class="form-control v-num" placeholder="11223 ب / نينوى"></div>'
+    +'<div class="col-md-5"><label class="form-label small fw-bold">نوع العجلة</label>'
+    +'<input type="text" class="form-control v-type" placeholder="بيك أب / تويوتا"></div>'
+    +'</div>'
+    +'<div class="fppair"><div class="fplbl"><i class="fa-solid fa-file-certificate"></i> سنوية العجلة (وجه وظهر)</div>'
+    +'<div class="row g-2">'
+    +'<div class="col-6"><div class="fplbl2">الوجه الأمامي</div>'
+    +'<input type="file" class="form-control form-control-sm" accept="image/*,.pdf" onchange="readFile(this,\''+uid+'\',\'anF\',\'p-'+uid+'-anF\')">'
+    +'<div id="p-'+uid+'-anF" class="mt-1"></div></div>'
+    +'<div class="col-6"><div class="fplbl2">الوجه الخلفي</div>'
+    +'<input type="file" class="form-control form-control-sm" accept="image/*,.pdf" onchange="readFile(this,\''+uid+'\',\'anB\',\'p-'+uid+'-anB\')">'
+    +'<div id="p-'+uid+'-anB" class="mt-1"></div></div>'
+    +'</div></div>'
+    +'<div class="fppair"><div class="fplbl"><i class="fa-solid fa-id-card"></i> بطاقة الموحدة للسائق (وجه وظهر)</div>'
+    +'<div class="row g-2">'
+    +'<div class="col-6"><div class="fplbl2">الوجه الأمامي</div>'
+    +'<input type="file" class="form-control form-control-sm" accept="image/*" onchange="readFile(this,\''+uid+'\',\'drF\',\'p-'+uid+'-drF\')">'
+    +'<div id="p-'+uid+'-drF" class="mt-1"></div></div>'
+    +'<div class="col-6"><div class="fplbl2">الوجه الخلفي</div>'
+    +'<input type="file" class="form-control form-control-sm" accept="image/*" onchange="readFile(this,\''+uid+'\',\'drB\',\'p-'+uid+'-drB\')">'
+    +'<div id="p-'+uid+'-drB" class="mt-1"></div></div>'
+    +'</div></div>';
+  document.getElementById('vehList').appendChild(d);
+}
+
+// ── WORKER FIELD ─────────────────────────────────────────────
+function addWrk() {
+  wCnt++;
+  var uid = 'w'+Date.now();
+  var d = document.createElement('div');
+  d.className = 'bg-white border rounded-3 p-3 mb-3 shadow-sm';
+  d.setAttribute('data-uid', uid);
+  d.innerHTML =
+    '<div class="d-flex justify-content-between align-items-center mb-2">'
+    +'<div style="display:flex;align-items:center;gap:8px;">'
+    +'<div style="width:30px;height:30px;border-radius:8px;background:#e8f5e9;color:var(--success);display:flex;align-items:center;justify-content:center;"><i class="fa-solid fa-person-digging"></i></div>'
+    +'<b class="text-primary">عامل '+wCnt+'</b></div>'
+    +'<button type="button" class="act-btn danger py-1 px-2" onclick="rmWrk(this)"><i class="fa-solid fa-trash-can"></i> حذف</button>'
+    +'</div>'
+    +'<div class="row g-2 mb-2">'
+    +'<div class="col-md-4"><label class="form-label small fw-bold">الاسم الرباعي</label>'
+    +'<input type="text" class="form-control w-name" placeholder="الاسم الكامل" required></div>'
+    +'<div class="col-md-2"><label class="form-label small fw-bold">تاريخ التولد</label>'
+    +'<input type="date" class="form-control w-dob" required onchange="chkAge(this)"></div>'
+    +'<div class="col-md-3"><label class="form-label small fw-bold">مدة العمل</label>'
+    +'<input type="text" class="form-control w-dur" placeholder="30 يوم" required></div>'
+    +'<div class="col-md-3"><label class="form-label small fw-bold">تاريخ البدء</label>'
+    +'<input type="date" class="form-control w-sd" required></div>'
+    +'</div>'
+    +'<div class="fppair"><div class="fplbl"><i class="fa-solid fa-id-card-clip"></i> بطاقة الموحدة للعامل (وجه وظهر)</div>'
+    +'<div class="row g-2">'
+    +'<div class="col-6"><div class="fplbl2">الوجه الأمامي</div>'
+    +'<input type="file" class="form-control form-control-sm" accept="image/*" required onchange="readFile(this,\''+uid+'\',\'idF\',\'p-'+uid+'-idF\')">'
+    +'<div id="p-'+uid+'-idF" class="mt-1"></div></div>'
+    +'<div class="col-6"><div class="fplbl2">الوجه الخلفي</div>'
+    +'<input type="file" class="form-control form-control-sm" accept="image/*" required onchange="readFile(this,\''+uid+'\',\'idB\',\'p-'+uid+'-idB\')">'
+    +'<div id="p-'+uid+'-idB" class="mt-1"></div></div>'
+    +'</div></div>'
+    +'<div class="age-warn mt-2" style="display:none;font-weight:bold;font-size:.82rem;color:#c62828;">'
+    +'<i class="fa-solid fa-triangle-exclamation me-1"></i>تحذير: قانون العمل العراقي — الحد الأدنى للعمل 15 سنة.</div>';
+  document.getElementById('wrkList').appendChild(d);
+}
+function rmWrk(btn) {
+  var list = document.getElementById('wrkList');
+  if(list.children.length > 1) btn.closest('[data-uid]').remove();
+  else alert('يجب وجود عامل واحد على الأقل.');
+}
+function chkAge(inp) {
+  if(!inp.value) return;
+  var dob=new Date(inp.value), today=new Date();
+  var age=today.getFullYear()-dob.getFullYear();
+  if(today.getMonth()-dob.getMonth()<0||(today.getMonth()===dob.getMonth()&&today.getDate()<dob.getDate())) age--;
+  var w=inp.closest('[data-uid]').querySelector('.age-warn');
+  w.style.display = age<18 ? 'block' : 'none';
+  w.style.color = age<15 ? '#c62828' : '#fd7e14';
+  inp.classList.toggle('is-invalid', age<15);
+}
+
+// ── FILE READ + PREVIEW ──────────────────────────────────────
+function readFile(inp, uid, key, prevId) {
+  if(!inp.files||!inp.files[0]) return;
+  var f=inp.files[0], fr=new FileReader();
+  fr.onload=function(e){
+    if(!tmpFiles[uid]) tmpFiles[uid]={};
+    tmpFiles[uid][key]={name:f.name, data:e.target.result, type:f.type};
+    var c=document.getElementById(prevId);
+    if(!c) return;
+    if(f.type.startsWith('image/')){
+      c.innerHTML='<img src="'+e.target.result+'" class="thumb" title="'+f.name+'" onclick="window.open(this.src,\'_blank\')">';
+    } else {
+      c.innerHTML='<span class="badge rounded-pill" style="background:#e8f5e9;color:#2e7d32;"><i class="fa-solid fa-file-pdf me-1"></i>'+f.name+'</span>';
+    }
+  };
+  fr.readAsDataURL(f);
+}
+
+// ── SUBMIT REQUEST ───────────────────────────────────────────
+function submitReq() {
+  var col=document.getElementById('rCollege').value;
+  var con=document.getElementById('rContractor').value.trim();
+  var det=document.getElementById('rDetail').value.trim();
+  var pledge=document.getElementById('pledge').checked;
+  if(!col||!con||!det){ alert('يرجى تعبئة جميع الحقول الإلزامية.'); return; }
+  if(!pledge){ alert('يرجى الموافقة على تعهد السلامة المهنية.'); return; }
+  if(document.querySelectorAll('.w-dob.is-invalid').length){ alert('يرجى إزالة العمال دون 15 سنة.'); return; }
+
+  var vehs=[], vfs=[];
+  document.querySelectorAll('#vehList > [data-uid]').forEach(function(v){
+    var num=v.querySelector('.v-num').value.trim();
+    var typ=v.querySelector('.v-type').value.trim();
+    if(num||typ) vehs.push((num||'؟')+' - '+(typ||'؟'));
+    var uid=v.getAttribute('data-uid');
+    if(tmpFiles[uid]) vfs.push(tmpFiles[uid]);
+  });
+
+  var workers=[];
+  document.querySelectorAll('#wrkList > [data-uid]').forEach(function(w){
+    var name=w.querySelector('.w-name').value.trim();
+    var dur=w.querySelector('.w-dur').value.trim();
+    var sd=w.querySelector('.w-sd').value;
+    var uid=w.getAttribute('data-uid');
+    if(name) workers.push({name:name,dur:dur,sd:sd,files:tmpFiles[uid]||{}});
+  });
+
+  var newId = reqs.length ? Math.max.apply(null,reqs.map(function(r){return r.id;}))+1 : 1;
+  reqs.push({id:newId,college:col,contractor:con,vehicle:vehs.join(' | ')||'بدون عجلة',
+    detail:det+' ('+workers.length+' عمال)',status:'pending',workers:workers,vFiles:vfs});
+
+  renderTbl();
+  alert('✅ تم تقديم الطلب بنجاح! المرفقات جاهزة للتدقيق.');
+  saveNow();
+  document.getElementById('rCollege').value='';
+  document.getElementById('rContractor').value='';
+  document.getElementById('rDetail').value='';
+  document.getElementById('pledge').checked=false;
+  document.getElementById('vehList').innerHTML='';
+  document.getElementById('wrkList').innerHTML='';
+  vCnt=0; wCnt=0;
+  addVeh(); addWrk();
+  go('dash', document.querySelector('.nav-item'));
+}
+
+// ── RENDER TABLE ─────────────────────────────────────────────
+function renderTbl() {
+  var tb=document.getElementById('tblBody');
+  tb.innerHTML='';
+  var pending=0;
+  reqs.forEach(function(r){
+    if(r.status==='pending') pending++;
+    var badge = r.status==='pending'
+      ? '<span class="status-badge pending"><i class="fa-solid fa-hourglass-half"></i>قيد المراجعة</span>'
+      : r.status==='approved'
+      ? '<span class="status-badge approved"><i class="fa-solid fa-circle-check"></i>مقبول</span>'
+      : '<span class="status-badge rejected"><i class="fa-solid fa-circle-xmark"></i>مرفوض</span>';
+
+    var wHtml='';
+    (r.workers||[]).forEach(function(w,i){
+      wHtml+='<div class="wrk-chip">'
+        +'<b><i class="fa-solid fa-person-digging me-1"></i>'+w.name+'</b>'
+        +'<div style="display:flex;align-items:center;gap:5px;margin-top:3px;">'
+        +'<i class="fa-regular fa-calendar-days" style="color:#aaa;font-size:.75rem;"></i>'
+        +'<span id="dur-'+r.id+'-'+i+'" style="font-size:.77rem;">'+w.dur+'</span>'
+        +'<button class="act-btn primary py-0 px-1" style="font-size:.6rem;" onclick="editDur('+r.id+','+i+')"><i class="fa-solid fa-pen"></i></button>'
+        +'</div>'
+        +(w.sd?'<div style="font-size:.7rem;color:#aaa;"><i class="fa-regular fa-clock me-1"></i>'+w.sd+'</div>':'')
+        +'</div>';
+    });
+    if(r.workers&&r.workers.length)
+      wHtml+='<button class="act-btn primary mt-1" style="font-size:.68rem;padding:3px 8px;" onclick="printReq('+r.id+')"><i class="fa-solid fa-print"></i> طباعة</button>';
+
+    var acts = r.status==='pending'
+      ? '<div style="display:flex;flex-direction:column;gap:5px;">'
+        +'<button class="act-btn info" style="width:100%;" onclick="openAttach('+r.id+')"><i class="fa-solid fa-magnifying-glass"></i> تدقيق</button>'
+        +'<div style="display:flex;gap:5px;">'
+        +'<button class="act-btn success" style="flex:1;" onclick="approve('+r.id+')"><i class="fa-solid fa-check"></i> قبول</button>'
+        +'<button class="act-btn danger" style="flex:1;" onclick="reject('+r.id+')"><i class="fa-solid fa-xmark"></i> رفض</button>'
+        +'</div>'
+        +'<div style="display:flex;gap:5px;">'
+        +'<button class="act-btn primary" style="flex:1;" onclick="openReqEdit('+r.id+')"><i class="fa-solid fa-pen-to-square"></i> تعديل</button>'
+        +'<button class="act-btn danger" style="flex:1;" onclick="deleteReq('+r.id+')"><i class="fa-solid fa-trash-can"></i> حذف</button>'
+        +'</div></div>'
+      : '<div style="display:flex;flex-direction:column;gap:5px;">'
+        +'<button class="act-btn info" style="width:100%;" onclick="openAttach('+r.id+')"><i class="fa-solid fa-paperclip"></i> مرفقات</button>'
+        +'<div style="display:flex;gap:5px;">'
+        +'<button class="act-btn primary" style="flex:1;" onclick="openReqEdit('+r.id+')"><i class="fa-solid fa-pen-to-square"></i> تعديل</button>'
+        +'<button class="act-btn danger" style="flex:1;" onclick="deleteReq('+r.id+')"><i class="fa-solid fa-trash-can"></i> حذف</button>'
+        +'</div></div>';
+
+    var tr=document.createElement('tr');
+    tr.innerHTML='<td class="ps-3"><b>'+r.college+'</b><br><small class="text-muted">'+r.contractor+'</small></td>'
+      +'<td><small>'+r.vehicle+'</small></td>'
+      +'<td style="min-width:210px;">'+wHtml+'</td>'
+      +'<td class="text-center"><canvas id="qr-'+r.id+'" width="65" height="65" style="border:1px solid #e0e3f0;border-radius:8px;"></canvas></td>'
+      +'<td>'+badge+'</td>'
+      +'<td class="text-center" style="min-width:130px;">'+acts+'</td>';
+    tb.appendChild(tr);
+  });
+
+  document.getElementById('cPend').textContent=reqs.filter(function(r){return r.status==='pending';}).length;
+  document.getElementById('cApp').textContent=reqs.filter(function(r){return r.status==='approved';}).length;
+  document.getElementById('cRej').textContent=reqs.filter(function(r){return r.status==='rejected';}).length;
+  var nb=document.getElementById('navBadge');
+  if(nb){ nb.textContent=pending; nb.style.display=pending?'':'none'; }
+
+  reqs.forEach(function(r){
+    var cv=document.getElementById('qr-'+r.id);
+    if(!cv) return;
+    var ctx=cv.getContext('2d');
+    ctx.clearRect(0,0,65,65);
+    ctx.fillStyle='#1a237e';
+    ctx.fillRect(2,2,18,18); ctx.fillRect(45,2,18,18); ctx.fillRect(2,45,18,18);
+    ctx.fillStyle='#fff';
+    ctx.fillRect(5,5,12,12); ctx.fillRect(48,5,12,12); ctx.fillRect(5,48,12,12);
+    ctx.fillStyle='#1a237e';
+    ctx.fillRect(8,8,6,6); ctx.fillRect(51,8,6,6); ctx.fillRect(8,51,6,6);
+    ctx.fillStyle='#333';
+    var names=(r.workers||[]).map(function(w){return w.name;}).join('');
+    var hash=0; for(var i=0;i<names.length;i++) hash=(hash*31+names.charCodeAt(i))&0xffffffff;
+    for(var x=25;x<60;x+=4) for(var y=2;y<30;y+=4) if((hash^(x*y))%3===0) ctx.fillRect(x,y,3,3);
+    for(var x=2;x<25;x+=4) for(var y=25;y<60;y+=4) if((hash^(x+y))%2===0) ctx.fillRect(x,y,3,3);
+    for(var x=25;x<60;x+=4) for(var y=30;y<60;y+=4) if((hash^(x-y))%3!==0) ctx.fillRect(x,y,3,3);
+    ctx.fillStyle='#555'; ctx.font='6px Arial'; ctx.textAlign='center';
+    ctx.fillText(r.id, 32, 63);
+  });
+}
+
+function filterTbl(v) {
+  v=v.toLowerCase();
+  document.querySelectorAll('#tblBody tr').forEach(function(r){
+    r.style.display=r.textContent.toLowerCase().includes(v)?'':'none';
+  });
+}
+function editDur(rid,idx) {
+  var r=reqs.find(function(r){return r.id===rid;});
+  if(!r||!r.workers[idx]) return;
+  var nv=prompt('تعديل مدة العمل للعامل:\n'+r.workers[idx].name, r.workers[idx].dur);
+  if(nv!==null&&nv.trim()){ r.workers[idx].dur=nv.trim(); renderTbl(); renderRep(); }
+}
+function approve(id){ var r=reqs.find(function(r){return r.id===id;}); if(r){r.status='approved';renderTbl();saveNow();} }
+function reject(id){ if(confirm('تأكيد الرفض؟')){ var r=reqs.find(function(r){return r.id===id;}); if(r){r.status='rejected';renderTbl();saveNow();} } }
+
+// ── ATTACHMENTS MODAL ────────────────────────────────────────
+function openAttach(rid) {
+  var r=reqs.find(function(r){return r.id===rid;});
+  if(!r) return;
+  function box(f, lbl) {
+    if(f&&f.data&&f.type&&f.type.startsWith('image/'))
+      return '<div><div class="fplbl2">'+lbl+'</div><img src="'+f.data+'" class="thumb" style="width:90px;height:62px;" onclick="window.open(this.src,\'_blank\')"></div>';
+    if(f&&f.name)
+      return '<div><div class="fplbl2">'+lbl+'</div><a href="'+f.data+'" target="_blank" class="badge bg-success p-2"><i class="fa-solid fa-file me-1"></i>'+f.name+'</a></div>';
+    return '<div><div class="fplbl2">'+lbl+'</div><div style="width:90px;height:62px;background:#f8f9ff;border:1.5px dashed #c5cae9;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:.7rem;color:#aaa;"><i class="fa-regular fa-image"></i></div></div>';
+  }
+  var wHtml='<div class="row g-3">'
+    +r.workers.map(function(w){
+      return '<div class="col-md-4"><div class="card p-3 h-100" style="border-radius:12px;border:1.5px solid #e0e3f0;">'
+        +'<b style="color:var(--primary);font-size:.85rem;"><i class="fa-solid fa-person-digging me-1"></i>'+w.name+'</b>'
+        +'<div class="text-muted" style="font-size:.75rem;">'+w.dur+' | بدء: '+(w.sd||'-')+'</div>'
+        +'<div class="d-flex gap-3 mt-2">'+box(w.files&&w.files.idF,'وجه البطاقة')+box(w.files&&w.files.idB,'ظهر البطاقة')+'</div>'
+        +'</div></div>';
+    }).join('')+'</div>';
+  var vHtml='';
+  if(r.vFiles&&r.vFiles.length){
+    r.vFiles.forEach(function(vf,i){
+      vHtml+='<div class="card p-3 mb-2" style="border-radius:12px;border:1.5px solid #e0e3f0;"><b style="color:var(--primary);font-size:.85rem;"><i class="fa-solid fa-car-side me-1"></i>عجلة '+(i+1)+'</b>'
+        +'<div class="row g-3 mt-1">'
+        +'<div class="col-6"><b style="font-size:.8rem;"><i class="fa-solid fa-file-certificate me-1"></i>سنوية العجلة</b>'
+        +'<div class="d-flex gap-2 mt-1">'+box(vf.anF,'الوجه')+box(vf.anB,'الظهر')+'</div></div>'
+        +'<div class="col-6"><b style="font-size:.8rem;"><i class="fa-solid fa-id-card me-1"></i>بطاقة السائق</b>'
+        +'<div class="d-flex gap-2 mt-1">'+box(vf.drF,'الوجه')+box(vf.drB,'الظهر')+'</div></div>'
+        +'</div></div>';
+    });
+  } else {
+    vHtml='<p class="text-muted small fst-italic"><i class="fa-regular fa-folder-open me-1"></i>لا توجد ملفات مرفوعة للعجلات.</p>';
+  }
+  document.getElementById('attachBody').innerHTML=
+    '<div class="alert py-2 small mb-3" style="background:#f0f3ff;border:1.5px solid #c5cae9;border-radius:10px;color:var(--primary);"><b>الجهة:</b> '+r.college+' | <b>المقاول:</b> '+r.contractor+' | <b>التفاصيل:</b> '+r.detail+'</div>'
+    +'<h6 class="fw-bold mb-3" style="color:var(--primary);"><i class="fa-solid fa-person-digging me-1"></i>بطاقات العمال (وجه وظهر)</h6>'+wHtml
+    +'<hr style="border-color:#f0f3ff;"><h6 class="fw-bold mt-3" style="color:var(--primary);"><i class="fa-solid fa-car-side me-1"></i>سنوية العجلة وبطاقة السائق</h6>'+vHtml;
+  new bootstrap.Modal(document.getElementById('mdlAttach')).show();
+}
+
+// ── PRINT ────────────────────────────────────────────────────
+function printReq(rid) {
+  var r=reqs.find(function(r){return r.id===rid;});
+  if(!r||!r.workers||!r.workers.length){ alert('لا يوجد عمال.'); return; }
+  var qrImg='';
+  var cv=document.getElementById('qr-'+r.id);
+  if(cv) qrImg='<img src="'+cv.toDataURL()+'" style="width:85px;height:85px;border:1px solid #ddd;padding:3px;"><br><small style="color:#888;font-size:10px;">مسح للتحقق</small>';
+  var rows=r.workers.map(function(w,i){
+    var ed='-';
+    if(w.sd){var s=new Date(w.sd),dm=w.dur.match(/\d+/);if(dm){s.setDate(s.getDate()+parseInt(dm[0]));ed=s.toLocaleDateString('ar-IQ');}}
+    return '<tr><td>'+(i+1)+'</td><td><b>'+w.name+'</b></td><td>'+w.dur+'</td>'
+      +'<td>'+(w.sd?new Date(w.sd).toLocaleDateString('ar-IQ'):'-')+'</td><td>'+ed+'</td><td style="width:80px;"></td></tr>';
+  }).join('');
+  var html='<!DOCTYPE html><html lang="ar" dir="rtl"><head><meta charset="UTF-8"><title>طباعة</title>'
+    +'<style>body{font-family:Arial,sans-serif;padding:22px;direction:rtl;font-size:12px;}'
+    +'.top{display:flex;justify-content:space-between;align-items:flex-start;border-bottom:3px solid #1a237e;padding-bottom:12px;margin-bottom:16px;}'
+    +'h2{color:#1a237e;margin:0 0 3px;font-size:16px;}p{margin:2px 0;color:#555;font-size:11px;}'
+    +'h3{color:#333;font-size:13px;margin:6px 0 3px;}'
+    +'table{width:100%;border-collapse:collapse;}th{background:#1a237e;color:#fff;padding:7px 9px;text-align:right;font-size:11px;}'
+    +'td{padding:6px 9px;border-bottom:1px solid #ddd;font-size:11px;}tr:nth-child(even){background:#f4f7f6;}'
+    +'.tot{margin-top:10px;background:#f4f7f6;padding:7px 12px;border-radius:5px;font-size:11px;}'
+    +'.stp{margin-top:35px;display:flex;justify-content:space-between;}'
+    +'.sb{text-align:center;width:160px;}.sb div{border-top:1px solid #333;margin-top:28px;padding-top:4px;font-size:10px;}'
+    +'.sig{margin-top:38px;text-align:center;border-top:2px solid #1a237e;padding-top:10px;}'
+    +'.sig p{margin:2px 0;color:#1a237e;font-size:11px;}.sig b{font-size:14px;color:#1a237e;}'
+    +'@media print{body{padding:8px;}}</style></head><body>'
+    +'<div class="top"><div>'
+    +'<h2>🏛️ جامعة الموصل</h2>'
+    +'<p>قسم التصاريح الأمنية والمتابعة</p>'
+    +'<h3>قائمة العمال المرفوعة من '+r.college+'</h3>'
+    +'<p>المقاول: <b>'+r.contractor+'</b></p>'
+    +'<p>تفاصيل العمل: <b>'+r.detail+'</b></p>'
+    +'<p>تاريخ الطباعة: <b>'+new Date().toLocaleDateString('ar-IQ')+'</b></p>'
+    +'</div><div style="text-align:center;">'+qrImg+'</div></div>'
+    +'<table><thead><tr><th>#</th><th>اسم العامل الرباعي</th><th>مدة العمل</th><th>تاريخ البدء</th><th>تاريخ الانتهاء</th><th>التوقيع</th></tr></thead>'
+    +'<tbody>'+rows+'</tbody></table>'
+    +'<div class="tot"><b>إجمالي العمال:</b> '+r.workers.length+' عامل</div>'
+    +'<div class="stp">'
+    +'<div class="sb"><div>مسؤول الكلية</div></div>'
+    +'<div class="sb"><div>مدير المقاول</div></div>'
+    +'<div class="sb"><div>مسؤول قسم التصاريح</div></div>'
+    +'</div>'
+    +'<div class="sig"><p>من تصميم</p><p><b>أ.م.د. هشام محمد خضر</b></p>'
+    +'<p>مدير قسم التصاريح الأمنية والمتابعة</p><p>جامعة الموصل</p></div>'
+    +'</body></html>';
+  var w=window.open('','_blank');
+  w.document.write(html); w.document.close(); w.focus();
+  setTimeout(function(){w.print();},500);
+}
+
+// ── ENTITIES ─────────────────────────────────────────────────
+function renderEnts() {
+  var tb=document.getElementById('entBody');
+  if(!tb) return;
+  tb.innerHTML='';
+  entities.forEach(function(e){
+    var ic = e.type==='كلية'?'fa-graduation-cap':e.type==='مركز'?'fa-microscope':e.type==='قسم رئاسة'?'fa-sitemap':'fa-layer-group';
+    var bc = e.type==='كلية'?'background:#e8eaf6;color:#1a237e;':e.type==='مركز'?'background:#e3f2fd;color:#0277bd;':e.type==='قسم رئاسة'?'background:#e8f5e9;color:#2e7d32;':'background:#f3e5f5;color:#6a1b9a;';
+    tb.innerHTML+='<tr><td class="ps-3 text-muted" style="font-size:.8rem;">#'+e.id+'</td>'
+      +'<td><b>'+e.name+'</b></td>'
+      +'<td><span class="badge rounded-pill" style="'+bc+'"><i class="fa-solid '+ic+' me-1"></i>'+e.type+'</span></td>'
+      +'<td class="text-center">'
+      +'<button class="act-btn primary me-1" onclick="editEnt('+e.id+')"><i class="fa-solid fa-pen-to-square"></i> تعديل</button>'
+      +'<button class="act-btn danger" onclick="delEnt('+e.id+')"><i class="fa-solid fa-trash-can"></i> حذف</button>'
+      +'</td></tr>';
+  });
+}
+function buildCollegeSelect() {
+  var s=document.getElementById('rCollege');
+  s.innerHTML='<option value="">-- اختر الجهة الطالبة --</option>';
+  entities.forEach(function(e){ s.innerHTML+='<option value="'+e.name+'">'+e.name+' ('+e.type+')</option>'; });
+}
+var entModalBs=null;
+function openEntModal() {
+  document.getElementById('entId').value='';
+  document.getElementById('entName').value='';
+  document.getElementById('entModalTitle').innerHTML='<i class="fa-solid fa-building-circle-arrow-right me-2"></i>إضافة جهة جديدة';
+  if(!entModalBs) entModalBs=new bootstrap.Modal(document.getElementById('mdlEnt'));
+  entModalBs.show();
+}
+function editEnt(id) {
+  var e=entities.find(function(e){return e.id===id;});
+  if(!e) return;
+  document.getElementById('entId').value=e.id;
+  document.getElementById('entName').value=e.name;
+  document.getElementById('entType').value=e.type;
+  document.getElementById('entModalTitle').innerHTML='<i class="fa-solid fa-pen-to-square me-2"></i>تعديل: '+e.name;
+  if(!entModalBs) entModalBs=new bootstrap.Modal(document.getElementById('mdlEnt'));
+  entModalBs.show();
+}
+function saveEnt() {
+  var id=document.getElementById('entId').value;
+  var nm=document.getElementById('entName').value.trim();
+  var tp=document.getElementById('entType').value;
+  if(!nm){alert('يرجى إدخال اسم الجهة');return;}
+  if(id){ var i=entities.findIndex(function(e){return e.id==id;}); if(i>-1){entities[i].name=nm;entities[i].type=tp;} }
+  else { entities.push({id:entities.length?Math.max.apply(null,entities.map(function(e){return e.id;}))+1:1,name:nm,type:tp}); }
+  renderEnts(); buildCollegeSelect();
+  if(entModalBs) entModalBs.hide();
+  saveNow();
+}
+function delEnt(id) {
+  if(confirm('حذف هذه الجهة؟')){ entities=entities.filter(function(e){return e.id!==id;}); renderEnts(); buildCollegeSelect(); saveNow(); }
+}
+
+// ── REPORTS ──────────────────────────────────────────────────
+function renderRep() {
+  var c=document.getElementById('repContent');
+  if(!c) return;
+  c.innerHTML='';
+  reqs.forEach(function(r){
+    if(!r.workers||!r.workers.length) return;
+    var d=document.createElement('div');
+    d.className='card2 mb-4';
+    var rows=r.workers.map(function(w,i){
+      var ed='-';
+      if(w.sd){var s=new Date(w.sd),dm=w.dur.match(/\d+/);if(dm){s.setDate(s.getDate()+parseInt(dm[0]));ed=s.toLocaleDateString('ar-IQ');}}
+      return '<tr><td class="ps-3">'+(i+1)+'</td>'
+        +'<td><b><i class="fa-solid fa-person-digging me-1 text-primary"></i>'+w.name+'</b></td>'
+        +'<td><span class="badge rounded-pill" style="background:#e8eaf6;color:var(--primary);">'+w.dur+'</span></td>'
+        +'<td>'+(w.sd?new Date(w.sd).toLocaleDateString('ar-IQ'):'-')+'</td><td>'+ed+'</td></tr>';
+    }).join('');
+    d.innerHTML='<div class="p-3 border-bottom d-flex justify-content-between align-items-center" style="border-color:#f0f3ff !important;">'
+      +'<div><b>'+r.college+'</b> <span class="text-muted">— '+r.contractor+'</span>'
+      +'<br><small class="text-muted"><i class="fa-solid fa-screwdriver-wrench me-1"></i>'+r.detail+'</small></div>'
+      +'<button class="act-btn primary" onclick="printReq('+r.id+')"><i class="fa-solid fa-print"></i> طباعة</button>'
+      +'</div>'
+      +'<div class="table-responsive"><table class="table table-hover align-middle mb-0" style="font-size:.83rem;">'
+      +'<thead style="background:#f8f9ff;"><tr><th class="ps-3">#</th><th>اسم العامل</th><th>مدة العمل</th><th>تاريخ البدء</th><th>تاريخ الانتهاء</th></tr></thead>'
+      +'<tbody>'+rows+'</tbody></table></div>';
+    c.appendChild(d);
+  });
+  if(!c.innerHTML) c.innerHTML='<p class="text-muted text-center py-5"><i class="fa-regular fa-folder-open fa-2x d-block mb-2"></i>لا توجد بيانات بعد.</p>';
+}
+
+// ── BACKUP & RESTORE ─────────────────────────────────────────
+var LS_KEY = 'uomosul_permits_data';
+var LS_SNAPS = 'uomosul_permits_snaps';
+var snapshots = [];
+
+function getDataBundle() {
+  return { reqs: reqs, users: users, entities: entities, bEmails: bEmails, ts: new Date().toISOString() };
+}
+
+function applyBundle(b) {
+  if(b.reqs)     reqs     = b.reqs;
+  if(b.users)    users    = b.users;
+  if(b.entities) entities = b.entities;
+  if(b.bEmails)  bEmails  = b.bEmails;
+}
+
+// Auto-save to localStorage every time data changes
+function saveNow() {
+  try {
+    localStorage.setItem(LS_KEY, JSON.stringify(getDataBundle()));
+    var now = new Date().toLocaleString('ar-IQ');
+    var lbl = document.getElementById('lastSaveLabel');
+    if(lbl){ lbl.textContent = '✓ آخر حفظ: ' + now; lbl.style.display = ''; }
+    logBkp('حفظ تلقائي في المتصفح');
+    updateBkpStats();
+  } catch(e) { alert('خطأ في الحفظ: ' + e.message); }
+}
+
+function loadFromStorage() {
+  try {
+    var raw = localStorage.getItem(LS_KEY);
+    if(raw) {
+      var b = JSON.parse(raw);
+      applyBundle(b);
+      logBkp('تحميل البيانات من المتصفح تلقائياً');
+    }
+    var rawSnaps = localStorage.getItem(LS_SNAPS);
+    if(rawSnaps) snapshots = JSON.parse(rawSnaps);
+  } catch(e) {}
+}
+
+function updateBkpStats() {
+  var rv = document.getElementById('bsReqsVal');
+  var uv = document.getElementById('bsUsersVal');
+  var ev = document.getElementById('bsEntsVal');
+  var sv = document.getElementById('bsSnapsVal');
+  if(rv) rv.textContent = reqs.length;
+  if(uv) uv.textContent = users.length;
+  if(ev) ev.textContent = entities.length;
+  if(sv) sv.textContent = snapshots.length;
+}
+
+// ── SNAPSHOTS ────────────────────────────────────────────────
+function createSnapshot() {
+  var label = prompt('اسم نقطة الاسترجاع (اختياري):', 'نسخة ' + new Date().toLocaleDateString('ar-IQ'));
+  if(label === null) return;
+  var snap = {
+    id: Date.now(),
+    label: label || ('نسخة ' + new Date().toLocaleDateString('ar-IQ')),
+    ts: new Date().toISOString(),
+    data: JSON.parse(JSON.stringify(getDataBundle()))
+  };
+  snapshots.unshift(snap);
+  if(snapshots.length > 30) snapshots.pop();
+  localStorage.setItem(LS_SNAPS, JSON.stringify(snapshots));
+  renderSnapshots();
+  updateBkpStats();
+  logBkp('إنشاء نقطة استرجاع: ' + snap.label);
+  showImportStatus('success', '✅ تم إنشاء نقطة الاسترجاع "' + snap.label + '"');
+}
+
+function restoreSnapshot(id) {
+  var snap = snapshots.find(function(s){return s.id===id;});
+  if(!snap) return;
+  if(!confirm('استرجاع النسخة "' + snap.label + '"؟\nسيتم استبدال جميع البيانات الحالية.')) return;
+  applyBundle(snap.data);
+  saveNow();
+  renderTbl(); renderEnts(); renderUsers(); renderRep(); renderEmailList();
+  buildCollegeSelect();
+  renderSnapshots();
+  logBkp('استرجاع نقطة: ' + snap.label);
+  showImportStatus('success', '✅ تم استرجاع البيانات من "' + snap.label + '" بنجاح');
+}
+
+function deleteSnapshot(id) {
+  var snap = snapshots.find(function(s){return s.id===id;});
+  if(!snap) return;
+  if(!confirm('حذف نقطة الاسترجاع "' + snap.label + '"؟')) return;
+  snapshots = snapshots.filter(function(s){return s.id!==id;});
+  localStorage.setItem(LS_SNAPS, JSON.stringify(snapshots));
+  renderSnapshots();
+  updateBkpStats();
+  logBkp('حذف نقطة استرجاع: ' + snap.label);
+}
+
+function clearAllSnapshots() {
+  if(!snapshots.length) { alert('لا توجد نقاط استرجاع.'); return; }
+  if(!confirm('حذف جميع نقاط الاسترجاع ('+snapshots.length+')؟ لا يمكن التراجع.')) return;
+  snapshots = [];
+  localStorage.removeItem(LS_SNAPS);
+  renderSnapshots();
+  updateBkpStats();
+  logBkp('مسح جميع نقاط الاسترجاع');
+}
+
+function renderSnapshots() {
+  var c = document.getElementById('snapshotList');
+  if(!c) return;
+  if(!snapshots.length) {
+    c.innerHTML = '<p class="text-muted small text-center py-3"><i class="fa-regular fa-clock fa-lg d-block mb-2"></i>لا توجد نقاط استرجاع بعد.<br><small>اضغط "إنشاء نقطة استرجاع" لحفظ لحظة في الزمن.</small></p>';
+    return;
+  }
+  c.innerHTML = snapshots.map(function(s, i) {
+    var dt = new Date(s.ts);
+    var dateStr = dt.toLocaleDateString('ar-IQ', {year:'numeric',month:'long',day:'numeric'});
+    var timeStr = dt.toLocaleTimeString('ar-IQ', {hour:'2-digit',minute:'2-digit'});
+    var isLatest = i === 0;
+    var iconBg = isLatest ? 'background:#e8f5e9;color:#2e7d32;' : 'background:#e8eaf6;color:#1a237e;';
+    var reqCount = (s.data.reqs||[]).length;
+    var wrkCount = (s.data.reqs||[]).reduce(function(a,r){return a+(r.workers||[]).length;},0);
+    return '<div class="snap-item">'
+      +'<div class="snap-icon" style="'+iconBg+'"><i class="fa-solid '+(isLatest?'fa-star':'fa-camera')+'"></i></div>'
+      +'<div class="snap-info">'
+      +'<div class="snap-title">'+s.label+(isLatest?' <span class="badge rounded-pill" style="background:#e8f5e9;color:#2e7d32;font-size:.6rem;">الأحدث</span>':'')+'</div>'
+      +'<div class="snap-meta"><i class="fa-regular fa-calendar me-1"></i>'+dateStr+' — '+timeStr
+      +' &nbsp;|&nbsp; <i class="fa-solid fa-file-lines me-1"></i>'+reqCount+' طلب'
+      +' &nbsp;|&nbsp; <i class="fa-solid fa-person-digging me-1"></i>'+wrkCount+' عامل</div>'
+      +'</div>'
+      +'<div class="snap-actions">'
+      +'<button class="act-btn success" onclick="restoreSnapshot('+s.id+')" title="استرجاع"><i class="fa-solid fa-rotate-right"></i> استرجاع</button>'
+      +'<button class="act-btn primary" onclick="exportSnapshotJSON('+s.id+')" title="تصدير"><i class="fa-solid fa-file-arrow-down"></i></button>'
+      +'<button class="act-btn danger" onclick="deleteSnapshot('+s.id+')" title="حذف"><i class="fa-solid fa-trash-can"></i></button>'
+      +'</div>'
+      +'</div>';
+  }).join('');
+}
+
+// ── EXPORT / IMPORT JSON ─────────────────────────────────────
+function exportJSON() {
+  var bundle = getDataBundle();
+  bundle.version = '5.0';
+  bundle.app = 'نظام التصاريح الأمنية — جامعة الموصل';
+  var b = new Blob([JSON.stringify(bundle, null, 2)], {type:'application/json;charset=utf-8'});
+  var u = URL.createObjectURL(b), a = document.createElement('a');
+  a.href = u; a.download = 'permits-backup-' + new Date().toISOString().slice(0,10) + '.json';
+  a.click(); URL.revokeObjectURL(u);
+  logBkp('تصدير ملف JSON');
+}
+
+function exportSnapshotJSON(id) {
+  var snap = snapshots.find(function(s){return s.id===id;});
+  if(!snap) return;
+  var b = new Blob([JSON.stringify(snap.data, null, 2)], {type:'application/json;charset=utf-8'});
+  var u = URL.createObjectURL(b), a = document.createElement('a');
+  a.href = u; a.download = 'snapshot-' + snap.label.replace(/\s+/g,'-') + '-' + new Date(snap.ts).toISOString().slice(0,10) + '.json';
+  a.click(); URL.revokeObjectURL(u);
+  logBkp('تصدير نقطة استرجاع: ' + snap.label);
+}
+
+function importJSON(input) {
+  if(!input.files||!input.files[0]) return;
+  var fr = new FileReader();
+  fr.onload = function(e) {
+    try {
+      var b = JSON.parse(e.target.result);
+      if(!b.reqs && !b.entities) throw new Error('الملف غير صحيح أو غير متوافق');
+      if(!confirm('استيراد البيانات من الملف؟\nسيتم استبدال جميع البيانات الحالية.\n\nالملف يحتوي على:\n• ' + (b.reqs||[]).length + ' طلبات\n• ' + (b.users||[]).length + ' مستخدمين\n• ' + (b.entities||[]).length + ' جهات')) return;
+      applyBundle(b);
+      saveNow();
+      renderTbl(); renderEnts(); renderUsers(); renderRep(); renderEmailList();
+      buildCollegeSelect();
+      updateBkpStats();
+      logBkp('استيراد ملف JSON: ' + input.files[0].name);
+      showImportStatus('success', '✅ تم استيراد البيانات بنجاح من "' + input.files[0].name + '"');
+    } catch(err) {
+      showImportStatus('error', '❌ خطأ في الاستيراد: ' + err.message);
+    }
+    input.value = '';
+  };
+  fr.readAsText(input.files[0]);
+}
+
+function showImportStatus(type, msg) {
+  var d = document.getElementById('importStatus');
+  if(!d) return;
+  d.style.display = '';
+  d.className = 'alert rounded-3 small py-2 ' + (type==='success' ? 'alert-success' : 'alert-danger');
+  d.textContent = msg;
+  setTimeout(function(){ d.style.display='none'; }, 5000);
+}
+
+// ── EMAIL BACKUP (kept) ──────────────────────────────────────
+function renderEmailList() {
+  var d=document.getElementById('emailList');
+  if(!d) return;
+  d.innerHTML = bEmails.length
+    ? bEmails.map(function(em,i){
+        return '<span class="email-chip"><i class="fa-solid fa-envelope"></i>'+em
+          +'<button class="rm-btn" onclick="rmEmail('+i+')"><i class="fa-solid fa-xmark"></i></button></span>';
+      }).join('')
+    : '<span class="text-muted small"><i class="fa-regular fa-envelope me-1"></i>لا يوجد إيميل مضاف.</span>';
+}
+function addEmail() {
+  var v=document.getElementById('newEmail').value.trim();
+  if(!v||!v.includes('@')){alert('يرجى إدخال إيميل صحيح.');return;}
+  if(bEmails.includes(v)){alert('الإيميل مضاف مسبقاً.');return;}
+  bEmails.push(v); document.getElementById('newEmail').value=''; renderEmailList(); saveNow();
+}
+function rmEmail(i){ bEmails.splice(i,1); renderEmailList(); saveNow(); }
+
+function bkpText() {
+  var d=new Date().toLocaleString('ar-IQ');
+  var t=['نسخة احتياطية — جامعة الموصل — قسم التصاريح الأمنية والمتابعة','أ.م.د. هشام محمد خضر — مدير القسم','التاريخ: '+d,'='.repeat(50),''];
+  reqs.forEach(function(r){
+    t.push('طلب #'+r.id+' | '+r.college+' | '+r.contractor+' | '+r.status);
+    t.push('العجلة: '+r.vehicle+' | '+r.detail);
+    (r.workers||[]).forEach(function(w,i){ t.push('  '+(i+1)+'. '+w.name+' | '+w.dur+' | '+w.sd); });
+    t.push('-'.repeat(40));
+  });
+  t.push(''); t.push('الإجمالي: '+reqs.length+' طلبات');
+  return t.join('\n');
+}
+
+function exportTXT() {
+  var b=new Blob([bkpText()],{type:'text/plain;charset=utf-8'});
+  var u=URL.createObjectURL(b), a=document.createElement('a');
+  a.href=u; a.download='backup-'+new Date().toISOString().slice(0,10)+'.txt';
+  a.click(); URL.revokeObjectURL(u); logBkp('تصدير ملف نصي');
+}
+
+function sendBkp() {
+  if(!bEmails.length){alert('يرجى إضافة إيميل أولاً.');return;}
+  var s=encodeURIComponent('نسخة احتياطية — نظام التصاريح — '+new Date().toLocaleDateString('ar-IQ'));
+  var b=encodeURIComponent(bkpText());
+  window.location.href='mailto:'+bEmails.join(',')+'?subject='+s+'&body='+b;
+  logBkp('إرسال يدوي إلى: '+bEmails.join(', '));
+}
+
+function updateScheduleLabel() {
+  var t = document.getElementById('bkpTime');
+  var s = document.getElementById('scheduleStatus');
+  if(t && s) s.textContent = 'يُرسل تلقائياً يومياً الساعة ' + t.value;
+}
+
+function logBkp(note) {
+  bLog.unshift(new Date().toLocaleString('ar-IQ')+' — '+note);
+  if(bLog.length>30) bLog.pop();
+  var d=document.getElementById('bkpLog');
+  if(d) d.innerHTML=bLog.map(function(l){
+    return '<div class="log-entry"><div class="log-icon"><i class="fa-solid fa-circle-check"></i></div><span>'+l+'</span></div>';
+  }).join('');
+}
+
+function autoBackup() {
+  var now=new Date();
+  var ti=document.getElementById('bkpTime');
+  if(!ti) return;
+  var parts=ti.value.split(':');
+  if(now.getHours()==parseInt(parts[0])&&now.getMinutes()==parseInt(parts[1])){
+    sendBkp();
+    saveNow();
+    logBkp('إرسال تلقائي يومي');
+  }
+}
+
+// ── USERS CRUD ───────────────────────────────────────────────
+function renderUsers() {
+  var tb = document.getElementById('userBody');
+  if(!tb) return;
+  tb.innerHTML = '';
+  if(!users.length) {
+    tb.innerHTML = '<tr><td colspan="5" class="text-center text-muted py-4"><i class="fa-regular fa-folder-open fa-lg d-block mb-2"></i>لا يوجد مستخدمون.</td></tr>';
+    return;
+  }
+  users.forEach(function(u) {
+    var roleColor = u.role==='أدمن' ? 'background:#e8eaf6;color:#1a237e;'
+      : u.role==='مدير النظام' ? 'background:#fce4ec;color:#c62828;'
+      : u.role==='أدمن أمني' ? 'background:#fff3e0;color:#e65100;'
+      : 'background:#e3f2fd;color:#0277bd;';
+    var roleIcon = u.role==='أدمن' ? 'fa-crown'
+      : u.role==='مدير النظام' ? 'fa-shield-halved'
+      : u.role==='أدمن أمني' ? 'fa-user-shield'
+      : 'fa-user-check';
+    tb.innerHTML += '<tr>'
+      +'<td class="ps-3">'
+      +'<div style="display:flex;align-items:center;gap:10px;">'
+      +'<div style="width:38px;height:38px;border-radius:11px;background:#e8eaf6;color:var(--primary);display:flex;align-items:center;justify-content:center;font-size:.95rem;font-weight:700;">'+u.name.charAt(0)+'</div>'
+      +'<div><b>'+u.name+'</b><br><small class="text-muted">@'+u.handle+'</small></div>'
+      +'</div></td>'
+      +'<td><a href="mailto:'+u.email+'" style="color:var(--primary);">'+u.email+'</a></td>'
+      +'<td><span class="badge rounded-pill" style="'+roleColor+'"><i class="fa-solid '+roleIcon+' me-1"></i>'+u.role+'</span></td>'
+      +'<td>'+u.dept+'</td>'
+      +'<td class="text-center">'
+      +'<div style="display:flex;gap:5px;justify-content:center;">'
+      +'<button class="act-btn primary" onclick="editUser('+u.id+')"><i class="fa-solid fa-pen-to-square"></i> تعديل</button>'
+      +'<button class="act-btn danger" onclick="deleteUser('+u.id+')"><i class="fa-solid fa-trash-can"></i> حذف</button>'
+      +'</div></td>'
+      +'</tr>';
+  });
+}
+
+function openUserModal() {
+  document.getElementById('userId').value = '';
+  document.getElementById('userName').value = '';
+  document.getElementById('userHandle').value = '';
+  document.getElementById('userEmail').value = '';
+  document.getElementById('userDept').value = '';
+  document.getElementById('userRole').value = 'أدمن';
+  document.getElementById('userPass').value = '';
+  document.getElementById('userModalTitle').innerHTML = '<i class="fa-solid fa-user-plus me-2"></i>إضافة مستخدم جديد';
+  if(!userModalBs) userModalBs = new bootstrap.Modal(document.getElementById('mdlUser'));
+  userModalBs.show();
+}
+
+function editUser(id) {
+  var u = users.find(function(u){return u.id===id;});
+  if(!u) return;
+  document.getElementById('userId').value = u.id;
+  document.getElementById('userName').value = u.name;
+  document.getElementById('userHandle').value = u.handle;
+  document.getElementById('userEmail').value = u.email;
+  document.getElementById('userDept').value = u.dept;
+  document.getElementById('userRole').value = u.role;
+  document.getElementById('userPass').value = '';
+  document.getElementById('userModalTitle').innerHTML = '<i class="fa-solid fa-pen-to-square me-2"></i>تعديل: '+u.name;
+  if(!userModalBs) userModalBs = new bootstrap.Modal(document.getElementById('mdlUser'));
+  userModalBs.show();
+}
+
+function saveUser() {
+  var id   = document.getElementById('userId').value;
+  var name = document.getElementById('userName').value.trim();
+  var handle = document.getElementById('userHandle').value.trim().replace('@','');
+  var email  = document.getElementById('userEmail').value.trim();
+  var dept   = document.getElementById('userDept').value.trim();
+  var role   = document.getElementById('userRole').value;
+  if(!name || !email) { alert('يرجى إدخال الاسم والبريد الإلكتروني.'); return; }
+  if(id) {
+    var i = users.findIndex(function(u){return u.id==id;});
+    if(i>-1) { users[i].name=name; users[i].handle=handle; users[i].email=email; users[i].dept=dept; users[i].role=role; }
+  } else {
+    var newId = users.length ? Math.max.apply(null, users.map(function(u){return u.id;}))+1 : 1;
+    users.push({id:newId, name:name, handle:handle, email:email, dept:dept, role:role});
+  }
+  renderUsers();
+  if(userModalBs) userModalBs.hide();
+  saveNow();
+}
+
+function deleteUser(id) {
+  var u = users.find(function(u){return u.id===id;});
+  if(!u) return;
+  if(confirm('حذف المستخدم "'+u.name+'"؟\nلا يمكن التراجع عن هذا الإجراء.')) {
+    users = users.filter(function(u){return u.id!==id;});
+    renderUsers(); saveNow();
+  }
+}
+
+// ── REQUEST EDIT / DELETE ────────────────────────────────────
+function openReqEdit(rid) {
+  var r = reqs.find(function(r){return r.id===rid;});
+  if(!r) return;
+  document.getElementById('editReqId').value = r.id;
+  // Populate college select
+  var sel = document.getElementById('editCollege');
+  sel.innerHTML = '';
+  entities.forEach(function(e){ sel.innerHTML += '<option value="'+e.name+'"'+(e.name===r.college?' selected':'')+'>'+e.name+'</option>'; });
+  document.getElementById('editContractor').value = r.contractor;
+  document.getElementById('editDetail').value = r.detail;
+  document.getElementById('editVehicle').value = r.vehicle;
+  document.getElementById('editStatus').value = r.status;
+  // Populate workers
+  var wl = document.getElementById('editWorkersList');
+  wl.innerHTML = '';
+  (r.workers||[]).forEach(function(w, i){ addEditWorkerRow(w, i); });
+  if(!reqEditModalBs) reqEditModalBs = new bootstrap.Modal(document.getElementById('mdlReqEdit'));
+  reqEditModalBs.show();
+}
+
+function addEditWorker() {
+  addEditWorkerRow({name:'',dur:'',sd:''}, document.getElementById('editWorkersList').children.length);
+}
+
+function addEditWorkerRow(w, idx) {
+  var wl = document.getElementById('editWorkersList');
+  var div = document.createElement('div');
+  div.className = 'border rounded-3 p-2 mb-2';
+  div.style.background = '#f8f9ff';
+  div.innerHTML =
+    '<div class="d-flex justify-content-between align-items-center mb-2">'
+    +'<small class="fw-bold text-primary"><i class="fa-solid fa-person-digging me-1"></i>عامل '+(idx+1)+'</small>'
+    +'<button type="button" class="act-btn danger py-0 px-2" style="font-size:.7rem;" onclick="this.closest(\'.border\').remove();renumberEditWorkers()"><i class="fa-solid fa-trash-can"></i></button>'
+    +'</div>'
+    +'<div class="row g-2">'
+    +'<div class="col-md-5"><input type="text" class="form-control form-control-sm ew-name" placeholder="الاسم الرباعي" value="'+w.name+'"></div>'
+    +'<div class="col-md-3"><input type="text" class="form-control form-control-sm ew-dur" placeholder="مدة العمل" value="'+w.dur+'"></div>'
+    +'<div class="col-md-4"><input type="date" class="form-control form-control-sm ew-sd" value="'+w.sd+'"></div>'
+    +'</div>';
+  wl.appendChild(div);
+}
+
+function renumberEditWorkers() {
+  document.querySelectorAll('#editWorkersList .border').forEach(function(d,i){
+    var lbl = d.querySelector('small');
+    if(lbl) lbl.innerHTML = '<i class="fa-solid fa-person-digging me-1"></i>عامل '+(i+1);
+  });
+}
+
+function saveReqEdit() {
+  var id = parseInt(document.getElementById('editReqId').value);
+  var r = reqs.find(function(r){return r.id===id;});
+  if(!r) return;
+  r.college    = document.getElementById('editCollege').value;
+  r.contractor = document.getElementById('editContractor').value.trim();
+  r.detail     = document.getElementById('editDetail').value.trim();
+  r.vehicle    = document.getElementById('editVehicle').value.trim() || 'بدون عجلة';
+  r.status     = document.getElementById('editStatus').value;
+  // Update workers
+  var newWorkers = [];
+  document.querySelectorAll('#editWorkersList .border').forEach(function(d){
+    var nm = d.querySelector('.ew-name').value.trim();
+    if(nm) newWorkers.push({
+      name: nm,
+      dur:  d.querySelector('.ew-dur').value.trim(),
+      sd:   d.querySelector('.ew-sd').value,
+      files: {}
+    });
+  });
+  if(newWorkers.length) r.workers = newWorkers;
+  renderTbl(); renderRep();
+  if(reqEditModalBs) reqEditModalBs.hide();
+  saveNow();
+}
+
+function deleteReq(id) {
+  var r = reqs.find(function(r){return r.id===id;});
+  if(!r) return;
+  if(confirm('حذف الطلب رقم #'+id+' من '+r.college+'؟\nلا يمكن التراجع عن هذا الإجراء.')) {
+    reqs = reqs.filter(function(r){return r.id!==id;});
+    renderTbl(); renderRep(); saveNow();
+  }
+}
+</script>
+</body>
+</html>
